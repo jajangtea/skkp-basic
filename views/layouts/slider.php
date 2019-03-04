@@ -21,7 +21,7 @@ use yii\helpers\Url;
 </style>
 <div id="mySidenav" class="sidenav sb-style-overlay">
     <div class="input-group">
-          <a href="javascript:void(0)" class="sb-icon-navbar sb-toggle-right" onclick="closeNav()">&times;</a>
+        <a href="javascript:void(0)" class="sb-icon-navbar sb-toggle-right" onclick="closeNav()">&times;</a>
     </div><!-- /input-group -->
 
     <h2 class="slidebar-header no-margin-bottom">Navigation</h2>
@@ -32,15 +32,15 @@ use yii\helpers\Url;
                 echo Html::button('Login', ['value' => Url::to(['site/login']), 'class' => 'modalB', 'id' => 'modalButton']);
                 echo Html::button('Register', ['value' => Url::to(['site/signup']), 'class' => 'modalB', 'id' => 'modalButtonRegister']);
             } else {
-                echo '<a data-method="post" href="index.php/site/logout">Logout</a>';
+                echo Html::a('Logout', Url::to(['site/logout']),['data-method'=>'POST']);
             }
             ?>
         </li>
         <li><a href="page_contact.html">Contact</a></li>
     </ul>
 
-     <h2 class="slidebar-header no-margin-bottom">Social Media</h2>
-     <ul class="slidebar-menu">
+    <h2 class="slidebar-header no-margin-bottom">Social Media</h2>
+    <ul class="slidebar-menu">
         <li><a href="#">Facebook</a></li>
         <li><a href="#">Instagram</a></li>
         <li><a href="#">Youtube</a></li>

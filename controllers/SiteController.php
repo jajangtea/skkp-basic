@@ -3,22 +3,24 @@
 namespace app\controllers;
 
 use app\models\ContactForm;
+use app\models\Jurusan;
 use app\models\LoginForm;
+use app\models\Mahasiswa;
 use app\models\SignupForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\Response;
 use const YII_ENV_TEST;
 
-class SiteController extends Controller
-{
+class SiteController extends Controller {
+
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'access' => [
                 'class' => AccessControl::className(),
@@ -43,8 +45,7 @@ class SiteController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function actions()
-    {
+    public function actions() {
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
@@ -61,9 +62,8 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
-    {
-        $this->layout="mainHome";
+    public function actionIndex() {
+        $this->layout = "mainHome";
         return $this->render('index');
     }
 
@@ -72,8 +72,7 @@ class SiteController extends Controller
      *
      * @return Response|string
      */
-    public function actionLogin()
-    {
+    public function actionLogin() {
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -82,17 +81,25 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         }
+        $request = Yii::$app->request;
+        if ($request->isAjax) {
+            $model->password = '';
+            return $this->renderAjax('login', [
+                        'model' => $model,
+            ]);
+        } else {
 
-        $model->password = '';
-        return $this->renderAjax('login', [
-            'model' => $model,
-        ]);
+            Yii::$app->session->setFlash("warning", "Gunakan menu <b>Login</b> pada <b>Sidebar</b>.");
+            return $this->render('index');
+        }
     }
-    
-     public function actionSignup()
-    {
-         $this->layout="mainLogin";
+
+    public function actionSignup() {
+        $this->layout = "mainHome";
         $model = new SignupForm();
+        $modelMhs = new Mahasiswa();
+        $authItems = ArrayHelper::map(Jurusan::find()->all(), 'KodeJurusan', 'NamaJurusan');
+                       
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
@@ -100,10 +107,17 @@ class SiteController extends Controller
                 }
             }
         }
-
-        return $this->renderAjax('signup', [
-            'model' => $model,
-        ]);
+        $request = Yii::$app->request;
+        if ($request->isAjax) {
+            return $this->renderAjax('signup', [
+                        'model' => $model,
+                        'modelMhs' => $modelMhs,
+                        'authItems' => $authItems,
+            ]);
+        } else {
+            Yii::$app->session->setFlash("warning", "Gunakan menu <b>Register</b> pada <b>Sidebar</b>.");
+            return $this->render('index');
+        }
     }
 
     /**
@@ -111,8 +125,7 @@ class SiteController extends Controller
      *
      * @return Response
      */
-    public function actionLogout()
-    {
+    public function actionLogout() {
         Yii::$app->user->logout();
 
         return $this->goHome();
@@ -123,8 +136,7 @@ class SiteController extends Controller
      *
      * @return Response|string
      */
-    public function actionContact()
-    {
+    public function actionContact() {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
@@ -132,7 +144,7 @@ class SiteController extends Controller
             return $this->refresh();
         }
         return $this->render('contact', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -141,8 +153,8 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionAbout()
-    {
+    public function actionAbout() {
         return $this->render('about');
     }
+
 }

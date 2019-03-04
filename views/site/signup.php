@@ -3,8 +3,9 @@
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \frontend\models\SignupForm */
 
-use yii\helpers\Html;
+use kartik\widgets\Select2;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\Html;
 
 $this->title = 'Signup';
 $this->params['breadcrumbs'][] = $this->title;
@@ -19,16 +20,34 @@ $this->params['breadcrumbs'][] = $this->title;
                     <form role="form">
                         <div class="form-group">
 
-                            <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-                        </div>
-                        <div class="form-group">
-                            <?= $form->field($model, 'email') ?>
-
-
+                            <?= $form->field($model, 'username')->textInput(['autofocus' => true])->label('NIM') ?>
                         </div>
                         <div class="form-group">
                             <?= $form->field($model, 'password')->passwordInput() ?>
                         </div>
+                        <div class="form-group">
+                            <?= $form->field($modelMhs, 'Nama')->label('Nama Lengkap') ?>
+                        </div>
+                        <div class="form-group">
+                            <?php
+                            echo $form->field($modelMhs, 'KodeJurusan')->widget(Select2::classname(), [
+                                'data' => $authItems,
+                                'options' => [
+                                    'placeholder' => 'Pilih Prodi',
+                                ],
+                                'pluginOptions' => [
+                                    'allowClear' => true,
+                                ],
+                            ])->label('Prodi');
+                            ?>
+                        </div>
+                        <div class="form-group">
+<?= $form->field($modelMhs, 'Tlp')->label('Telepon') ?>
+                        </div>
+                        <div class="form-group">
+<?= $form->field($model, 'email') ?>
+                        </div>
+
                         <div class="form-group">
                             <label for="InputEmail">Email<sup>*</sup></label>
                             <input type="email" class="form-control" id="InputEmail">
@@ -55,11 +74,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+<?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
                             </div>
                         </div>
                     </form>
-                    <?php ActiveForm::end(); ?>
+<?php ActiveForm::end(); ?>
                 </div>
             </div>
         </div>
