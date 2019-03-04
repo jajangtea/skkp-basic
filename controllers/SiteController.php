@@ -107,6 +107,7 @@ class SiteController extends Controller {
                 }
             }
         }
+        
         $request = Yii::$app->request;
         if ($request->isAjax) {
             return $this->renderAjax('signup', [
