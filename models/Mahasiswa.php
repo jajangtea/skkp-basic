@@ -20,23 +20,24 @@ use Yii;
  * @property Pendaftaran[] $pendaftarans
  * @property Pengajuan[] $pengajuans
  */
-class Mahasiswa extends \yii\db\ActiveRecord
-{
+class Mahasiswa extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return '{{%mahasiswa}}';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['NIM'], 'required'],
+            [['Nama'], 'required'],
+            [['Tlp'], 'required'],
+            [['KodeJurusan'], 'required'],
             [['NIM', 'IdUser'], 'integer'],
             [['Nama'], 'string', 'max' => 200],
             [['Tlp'], 'string', 'max' => 20],
@@ -50,8 +51,7 @@ class Mahasiswa extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'NIM' => 'Nim',
             'Nama' => 'Nama',
@@ -64,48 +64,43 @@ class Mahasiswa extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getKodeJurusan()
-    {
+    public function getKodeJurusan() {
         return $this->hasOne(Jurusan::className(), ['KodeJurusan' => 'KodeJurusan']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUser()
-    {
+    public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'IdUser']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getNilaikps()
-    {
+    public function getNilaikps() {
         return $this->hasMany(Nilaikp::className(), ['NIM' => 'NIM']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getNilaimasterskripsi()
-    {
+    public function getNilaimasterskripsi() {
         return $this->hasOne(Nilaimasterskripsi::className(), ['NIM' => 'NIM']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPendaftarans()
-    {
+    public function getPendaftarans() {
         return $this->hasMany(Pendaftaran::className(), ['NIM' => 'NIM']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPengajuans()
-    {
+    public function getPengajuans() {
         return $this->hasMany(Pengajuan::className(), ['NIM' => 'NIM']);
     }
+
 }

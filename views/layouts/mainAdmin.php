@@ -29,7 +29,7 @@ AppAsset::register($this);
         <div class="wrap">
             <?php
             NavBar::begin([
-                'brandLabel' => Yii::$app->name,
+                'brandLabel' => "SKKP <span>STT INDONESIA</span>",
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'class="navbar navbar-default navbar-inverse yamm navbar-static-top"',

@@ -42,29 +42,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             ?>
                         </div>
                         <div class="form-group">
-<?= $form->field($modelMhs, 'Tlp')->label('Telepon') ?>
+                            <?= $form->field($model, 'email') ?>
                         </div>
                         <div class="form-group">
-<?= $form->field($model, 'email') ?>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="InputEmail">Email<sup>*</sup></label>
-                            <input type="email" class="form-control" id="InputEmail">
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="InputPassword">Password<sup>*</sup></label>
-                                    <input type="password" class="form-control" id="InputPassword">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="InputConfirmPassword">Confirm Password<sup>*</sup></label>
-                                    <input type="password" class="form-control" id="InputConfirmPassword">
-                                </div>
-                            </div>
+                            <?= $form->field($modelMhs, 'Tlp')->label('Telepon') ?>
                         </div>
                         <div class="row">
                             <div class="col-md-8">
@@ -74,11 +55,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </div>
                             </div>
                             <div class="col-md-4">
-<?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                                <?= Html::submitButton('Signup', ['class' => 'btn btn-primary pull-right', 'name' => 'signup-button']) ?>
                             </div>
                         </div>
                     </form>
-<?php ActiveForm::end(); ?>
+                    <?php ActiveForm::end(); ?>
                 </div>
             </div>
         </div>
