@@ -13,6 +13,9 @@ class SignupForm extends Model {
     public $username;
     public $email;
     public $password;
+    public $Tlp;
+    public $KodeJurusan;
+    public $item_name;
 
     /**
      * {@inheritdoc}
@@ -42,27 +45,33 @@ class SignupForm extends Model {
         if (!$this->validate()) {
             return null;
         }
+        if ($this->validate()) {
+            $user = new User();
+            $user->username = $this->username;
+            $user->email = $this->email;
+            $user->setPassword($this->password);
+            $user->generateAuthKey();
+            $user->save();
+            
 
-        $user = new User();
-        $user->username = $this->username;
-        $user->email = $this->email;
-        $user->setPassword($this->password);
-        $user->generateAuthKey();
-
-        $mahasiwa = new Mahasiswa;
-        $mahasiwa->NIM = $this->username;
-        $mahasiwa->Tlp = $this->Tlp;
-        $mahasiwa->KodeJurusan = $this->KodeJurusan;
-        $mahasiwa->IdUser = $user->id;
-        $mahasiwa->save();
-
-        $newPermission = new AuthAssignment;
-        $newPermission->item_name = 'mahasiswa';
-        $newPermission->user_id = $user->id;
-        $newPermission->save();
+            $newPermission = new AuthAssignment;
+            $newPermission->item_name = 'mahasiswa';
+            $newPermission->user_id = $user->id;
+            $newPermission->save();
+            
+            
+            $modelMhs = new Mahasiswa;
+            $modelMhs->NIM = $this->username;
+            $modelMhs->Tlp = $this->Tlp;
+            $modelMhs->KodeJurusan = $this->KodeJurusan;
+            $modelMhs->IdUser = $user->id;
+            $modelMhs->save();
 
 
-        return $user->save() ? $user : null;
+            return $user;
+        }
+        
+        return null;
     }
 
 }
