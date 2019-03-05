@@ -3,21 +3,22 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\Ta;
-use app\models\TaSearch;
+use app\models\Periode;
+use app\models\PeriodeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * TaController implements the CRUD actions for Ta model.
+ * PeriodeController implements the CRUD actions for Periode model.
  */
-class TaController extends Controller {
-
+class PeriodeController extends Controller
+{
     /**
      * {@inheritdoc}
      */
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -29,94 +30,98 @@ class TaController extends Controller {
     }
 
     /**
-     * Lists all Ta models.
+     * Lists all Periode models.
      * @return mixed
      */
-    public function actionIndex() {
-        $this->layout = '@app/views/layouts/mainAdmin';
-        $searchModel = new TaSearch();
+    public function actionIndex()
+    {
+        $searchModel = new PeriodeSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single Ta model.
+     * Displays a single Periode model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id) {
+    public function actionView($id)
+    {
         return $this->render('view', [
-                    'model' => $this->findModel($id),
+            'model' => $this->findModel($id),
         ]);
     }
 
     /**
-     * Creates a new Ta model.
+     * Creates a new Periode model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate() {
-        $model = new Ta();
+    public function actionCreate()
+    {
+        $model = new Periode();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_ta]);
+            return $this->redirect(['view', 'id' => $model->id_periode]);
         }
 
         return $this->render('create', [
-                    'model' => $model,
+            'model' => $model,
         ]);
     }
 
     /**
-     * Updates an existing Ta model.
+     * Updates an existing Periode model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id) {
+    public function actionUpdate($id)
+    {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_ta]);
+            return $this->redirect(['view', 'id' => $model->id_periode]);
         }
 
         return $this->render('update', [
-                    'model' => $model,
+            'model' => $model,
         ]);
     }
 
     /**
-     * Deletes an existing Ta model.
+     * Deletes an existing Periode model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id) {
+    public function actionDelete($id)
+    {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Ta model based on its primary key value.
+     * Finds the Periode model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Ta the loaded model
+     * @return Periode the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id) {
-        if (($model = Ta::findOne($id)) !== null) {
+    protected function findModel($id)
+    {
+        if (($model = Periode::findOne($id)) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-
 }

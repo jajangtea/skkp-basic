@@ -19,9 +19,8 @@ use Yii;
  * @property NilaiMasterSkripsi[] $nilaiMasterSkripsis
  * @property Pembimbing[] $pembimbings
  * @property Pendaftaran[] $pendaftarans
- * @property JenisSidang $jenisProposal
  * @property StatusProposal $statusProposal
- * @property Mahasiswa $nIM
+ * @property JenisProposal $jenisProposal
  */
 class Pengajuan extends \yii\db\ActiveRecord
 {
@@ -43,9 +42,8 @@ class Pengajuan extends \yii\db\ActiveRecord
             [['tanggal_daftar'], 'safe'],
             [['judul', 'keterangan'], 'string'],
             [['id_periode'], 'required'],
-            [['id_jenis_proposal'], 'exist', 'skipOnError' => true, 'targetClass' => JenisSidang::className(), 'targetAttribute' => ['id_jenis_proposal' => 'id_jenis_sidang']],
             [['id_status_proposal'], 'exist', 'skipOnError' => true, 'targetClass' => StatusProposal::className(), 'targetAttribute' => ['id_status_proposal' => 'id_status_proposal']],
-            [['NIM'], 'exist', 'skipOnError' => true, 'targetClass' => Mahasiswa::className(), 'targetAttribute' => ['NIM' => 'NIM']],
+            [['id_jenis_proposal'], 'exist', 'skipOnError' => true, 'targetClass' => JenisProposal::className(), 'targetAttribute' => ['id_jenis_proposal' => 'id_jenis_proposal']],
         ];
     }
 
@@ -93,14 +91,6 @@ class Pengajuan extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getJenisProposal()
-    {
-        return $this->hasOne(JenisSidang::className(), ['id_jenis_sidang' => 'id_jenis_proposal']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getStatusProposal()
     {
         return $this->hasOne(StatusProposal::className(), ['id_status_proposal' => 'id_status_proposal']);
@@ -109,8 +99,8 @@ class Pengajuan extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getNIM()
+    public function getJenisProposal()
     {
-        return $this->hasOne(Mahasiswa::className(), ['NIM' => 'NIM']);
+        return $this->hasOne(JenisProposal::className(), ['id_jenis_proposal' => 'id_jenis_proposal']);
     }
 }

@@ -7,8 +7,10 @@ use Yii;
 /**
  * This is the model class for table "{{%jenis_proposal}}".
  *
- * @property int $id_jenis_sidang
+ * @property int $id_jenis_proposal
  * @property string $nama_sidang
+ *
+ * @property Pengajuan[] $pengajuans
  */
 class JenisProposal extends \yii\db\ActiveRecord
 {
@@ -36,8 +38,16 @@ class JenisProposal extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_jenis_sidang' => 'Id Jenis Sidang',
+            'id_jenis_proposal' => 'Id Jenis Proposal',
             'nama_sidang' => 'Nama Sidang',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPengajuans()
+    {
+        return $this->hasMany(Pengajuan::className(), ['id_jenis_proposal' => 'id_jenis_proposal']);
     }
 }
