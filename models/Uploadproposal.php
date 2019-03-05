@@ -5,22 +5,22 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%uploadproposal}}".
+ * This is the model class for table "{{%upload_proposal}}".
  *
- * @property int $idUpload
- * @property int $idPengajuan
- * @property string $namaFile
- * @property string $ukuranFIle
- * @property int $idPersyaratan
+ * @property int $id_upload
+ * @property int $id_pengajuan
+ * @property string $nama_file
+ * @property string $ukuran_fIle
+ * @property int $id_persyaratan
  */
-class Uploadproposal extends \yii\db\ActiveRecord
+class UploadProposal extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return '{{%uploadproposal}}';
+        return '{{%upload_proposal}}';
     }
 
     /**
@@ -29,8 +29,8 @@ class Uploadproposal extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idPengajuan', 'idPersyaratan'], 'integer'],
-            [['namaFile', 'ukuranFIle'], 'string', 'max' => 300],
+            [['id_pengajuan', 'id_persyaratan'], 'integer'],
+            [['nama_file', 'ukuran_fIle'], 'string', 'max' => 300],
         ];
     }
 
@@ -40,11 +40,11 @@ class Uploadproposal extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idUpload' => 'Id Upload',
-            'idPengajuan' => 'Id Pengajuan',
-            'namaFile' => 'Nama File',
-            'ukuranFIle' => 'Ukuran F Ile',
-            'idPersyaratan' => 'Id Persyaratan',
+            'id_upload' => 'Id Upload',
+            'id_pengajuan' => 'Id Pengajuan',
+            'nama_file' => 'Nama File',
+            'ukuran_fIle' => 'Ukuran F Ile',
+            'id_persyaratan' => 'Id Persyaratan',
         ];
     }
 }

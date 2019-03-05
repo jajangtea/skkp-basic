@@ -13,10 +13,10 @@ class SignupForm extends Model {
     public $username;
     public $email;
     public $password;
-    public $Tlp;
-    public $KodeJurusan;
-    public $item_name;
-
+    public $nim;
+    public $nama;
+    public $tlp;
+    public $kode_jurusan;
     /**
      * {@inheritdoc}
      */
@@ -52,25 +52,16 @@ class SignupForm extends Model {
             $user->setPassword($this->password);
             $user->generateAuthKey();
             $user->save();
-            
 
-            $newPermission = new AuthAssignment;
-            $newPermission->item_name = 'mahasiswa';
-            $newPermission->user_id = $user->id;
-            $newPermission->save();
+            $sql = "insert into prd_auth_assignment (item_name,user_id,created_at) values (:item_name,:user_id,:created_at)";
+            $params = [":item_name" => "mahasiswa", ":user_id" => $user->id,":created_at"=>time()];
+            \Yii::$app->db->createCommand($sql)->bindValues($params)->execute();
+
             
             
-            $modelMhs = new Mahasiswa;
-            $modelMhs->NIM = $this->username;
-            $modelMhs->Tlp = $this->Tlp;
-            $modelMhs->KodeJurusan = $this->KodeJurusan;
-            $modelMhs->IdUser = $user->id;
-            $modelMhs->save();
-
-
             return $user;
         }
-        
+
         return null;
     }
 

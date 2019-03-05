@@ -98,16 +98,20 @@ class SiteController extends Controller {
         $this->layout = "mainHome";
         $model = new SignupForm();
         $modelMhs = new Mahasiswa();
-        $authItems = ArrayHelper::map(Jurusan::find()->all(), 'KodeJurusan', 'NamaJurusan');
-                       
-        if ($model->load(Yii::$app->request->post())) {
+        $authItems = ArrayHelper::map(Jurusan::find()->all(), 'kode_jurusan', 'nama_jurusan');
+
+        if ($model->load(Yii::$app->request->post()) && $modelMhs->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
+
+                $sqlMahasiswa = "insert into prd_mahasiswa (nim,nama,tlp,kode_jurusan,id_user) values (:nim,:nama,:tlp,:kode_jurusan,:id_user)";
+                $paramsMahasiswa = [":nim" => $user->username, ":nama" => $modelMhs->nama, ":tlp" => $modelMhs->tlp, ":kode_jurusan" => $modelMhs->kode_jurusan, ":id_user" => $user->id];
+                \Yii::$app->db->createCommand($sqlMahasiswa)->bindValues($paramsMahasiswa)->execute();
                 if (Yii::$app->getUser()->login($user)) {
                     return $this->goHome();
                 }
             }
         }
-        
+
         $request = Yii::$app->request;
         if ($request->isAjax) {
             return $this->renderAjax('signup', [

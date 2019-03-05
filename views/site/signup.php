@@ -26,11 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?= $form->field($model, 'password')->passwordInput() ?>
                         </div>
                         <div class="form-group">
-                            <?= $form->field($modelMhs, 'Nama')->label('Nama Lengkap') ?>
+                            <?= $form->field($modelMhs, 'nama')->label('Nama Lengkap') ?>
                         </div>
                         <div class="form-group">
                             <?php
-                            echo $form->field($modelMhs, 'KodeJurusan')->widget(Select2::classname(), [
+                            echo $form->field($modelMhs, 'kode_jurusan')->widget(Select2::classname(), [
                                 'data' => $authItems,
                                 'options' => [
                                     'placeholder' => 'Pilih Prodi',
@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?= $form->field($model, 'email') ?>
                         </div>
                         <div class="form-group">
-                            <?= $form->field($modelMhs, 'Tlp')->label('Telepon') ?>
+                            <?= $form->field($modelMhs, 'tlp')->label('Telepon') ?>
                         </div>
                         <div class="row">
                             <div class="col-md-8">

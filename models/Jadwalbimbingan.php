@@ -5,23 +5,23 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%jadwalbimbingan}}".
+ * This is the model class for table "{{%jadwal_bimbingan}}".
  *
- * @property int $idJadwalBimbingan
+ * @property int $id_jadwal_bimbingan
  * @property string $hari
  * @property string $jam
- * @property string $KodeDosen
+ * @property string $kode_dosen
  *
  * @property Dosen $kodeDosen
  */
-class Jadwalbimbingan extends \yii\db\ActiveRecord
+class JadwalBimbingan extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return '{{%jadwalbimbingan}}';
+        return '{{%jadwal_bimbingan}}';
     }
 
     /**
@@ -31,8 +31,8 @@ class Jadwalbimbingan extends \yii\db\ActiveRecord
     {
         return [
             [['hari', 'jam'], 'string', 'max' => 200],
-            [['KodeDosen'], 'string', 'max' => 3],
-            [['KodeDosen'], 'exist', 'skipOnError' => true, 'targetClass' => Dosen::className(), 'targetAttribute' => ['KodeDosen' => 'KodeDosen']],
+            [['kode_dosen'], 'string', 'max' => 3],
+            [['kode_dosen'], 'exist', 'skipOnError' => true, 'targetClass' => Dosen::className(), 'targetAttribute' => ['kode_dosen' => 'kode_dosen']],
         ];
     }
 
@@ -42,10 +42,10 @@ class Jadwalbimbingan extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idJadwalBimbingan' => 'Id Jadwal Bimbingan',
+            'id_jadwal_bimbingan' => 'Id Jadwal Bimbingan',
             'hari' => 'Hari',
             'jam' => 'Jam',
-            'KodeDosen' => 'Kode Dosen',
+            'kode_dosen' => 'Kode Dosen',
         ];
     }
 
@@ -54,6 +54,6 @@ class Jadwalbimbingan extends \yii\db\ActiveRecord
      */
     public function getKodeDosen()
     {
-        return $this->hasOne(Dosen::className(), ['KodeDosen' => 'KodeDosen']);
+        return $this->hasOne(Dosen::className(), ['kode_dosen' => 'kode_dosen']);
     }
 }

@@ -7,20 +7,20 @@ use Yii;
 /**
  * This is the model class for table "{{%pengajuan}}".
  *
- * @property int $IDPengajuan
- * @property int $IDJenisSidang
- * @property int $NIM
- * @property string $TanggalDaftar
- * @property string $Judul
+ * @property int $id_pengajuan
+ * @property int $id_jenis_proposal
+ * @property int $nim
+ * @property string $tanggal_daftar
+ * @property string $judul
  * @property string $keterangan
- * @property int $IDstatusProposal
- * @property int $idPeriode
+ * @property int $id_status_proposal
+ * @property int $id_periode
  *
- * @property Nilaimasterskripsi[] $nilaimasterskripsis
+ * @property NilaiMasterSkripsi[] $nilaiMasterSkripsis
  * @property Pembimbing[] $pembimbings
  * @property Pendaftaran[] $pendaftarans
- * @property Jenissidang $jenisSidang
- * @property Statusproposal $statusProposal
+ * @property JenisSidang $jenisProposal
+ * @property StatusProposal $statusProposal
  * @property Mahasiswa $nIM
  */
 class Pengajuan extends \yii\db\ActiveRecord
@@ -39,12 +39,12 @@ class Pengajuan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['IDJenisSidang', 'NIM', 'IDstatusProposal', 'idPeriode'], 'integer'],
-            [['TanggalDaftar'], 'safe'],
-            [['Judul', 'keterangan'], 'string'],
-            [['idPeriode'], 'required'],
-            [['IDJenisSidang'], 'exist', 'skipOnError' => true, 'targetClass' => Jenissidang::className(), 'targetAttribute' => ['IDJenisSidang' => 'IDJenisSidang']],
-            [['IDstatusProposal'], 'exist', 'skipOnError' => true, 'targetClass' => Statusproposal::className(), 'targetAttribute' => ['IDstatusProposal' => 'idstatusProp']],
+            [['id_jenis_proposal', 'nim', 'id_status_proposal', 'id_periode'], 'integer'],
+            [['tanggal_daftar'], 'safe'],
+            [['judul', 'keterangan'], 'string'],
+            [['id_periode'], 'required'],
+            [['id_jenis_proposal'], 'exist', 'skipOnError' => true, 'targetClass' => JenisSidang::className(), 'targetAttribute' => ['id_jenis_proposal' => 'id_jenis_sidang']],
+            [['id_status_proposal'], 'exist', 'skipOnError' => true, 'targetClass' => StatusProposal::className(), 'targetAttribute' => ['id_status_proposal' => 'id_status_proposal']],
             [['NIM'], 'exist', 'skipOnError' => true, 'targetClass' => Mahasiswa::className(), 'targetAttribute' => ['NIM' => 'NIM']],
         ];
     }
@@ -55,23 +55,23 @@ class Pengajuan extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'IDPengajuan' => 'Id Pengajuan',
-            'IDJenisSidang' => 'Id Jenis Sidang',
-            'NIM' => 'Nim',
-            'TanggalDaftar' => 'Tanggal Daftar',
-            'Judul' => 'Judul',
+            'id_pengajuan' => 'Id Pengajuan',
+            'id_jenis_proposal' => 'Id Jenis Proposal',
+            'nim' => 'Nim',
+            'tanggal_daftar' => 'Tanggal Daftar',
+            'judul' => 'Judul',
             'keterangan' => 'Keterangan',
-            'IDstatusProposal' => 'I Dstatus Proposal',
-            'idPeriode' => 'Id Periode',
+            'id_status_proposal' => 'Id Status Proposal',
+            'id_periode' => 'Id Periode',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getNilaimasterskripsis()
+    public function getNilaiMasterSkripsis()
     {
-        return $this->hasMany(Nilaimasterskripsi::className(), ['idPengajuan' => 'IDPengajuan']);
+        return $this->hasMany(NilaiMasterSkripsi::className(), ['id_pengajuan' => 'id_pengajuan']);
     }
 
     /**
@@ -79,7 +79,7 @@ class Pengajuan extends \yii\db\ActiveRecord
      */
     public function getPembimbings()
     {
-        return $this->hasMany(Pembimbing::className(), ['idPengajuan' => 'IDPengajuan']);
+        return $this->hasMany(Pembimbing::className(), ['id_pengajuan' => 'id_pengajuan']);
     }
 
     /**
@@ -87,15 +87,15 @@ class Pengajuan extends \yii\db\ActiveRecord
      */
     public function getPendaftarans()
     {
-        return $this->hasMany(Pendaftaran::className(), ['idPengajuan' => 'IDPengajuan']);
+        return $this->hasMany(Pendaftaran::className(), ['id_pengajuan' => 'id_pengajuan']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getJenisSidang()
+    public function getJenisProposal()
     {
-        return $this->hasOne(Jenissidang::className(), ['IDJenisSidang' => 'IDJenisSidang']);
+        return $this->hasOne(JenisSidang::className(), ['id_jenis_sidang' => 'id_jenis_proposal']);
     }
 
     /**
@@ -103,7 +103,7 @@ class Pengajuan extends \yii\db\ActiveRecord
      */
     public function getStatusProposal()
     {
-        return $this->hasOne(Statusproposal::className(), ['idstatusProp' => 'IDstatusProposal']);
+        return $this->hasOne(StatusProposal::className(), ['id_status_proposal' => 'id_status_proposal']);
     }
 
     /**

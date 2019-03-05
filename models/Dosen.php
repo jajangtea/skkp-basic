@@ -7,18 +7,18 @@ use Yii;
 /**
  * This is the model class for table "{{%dosen}}".
  *
- * @property string $KodeDosen
- * @property string $NamaDosen
- * @property string $Tlp
- * @property int $IdUser
+ * @property string $kode_dosen
+ * @property string $nama_dosen
+ * @property string $tlp
+ * @property int $id_user
  *
  * @property User $user
  * @property Jabatan[] $jabatans
- * @property Jadwalbimbingan[] $jadwalbimbingans
+ * @property JadwalBimbingan[] $jadwalBimbingans
  * @property Pendaftaran[] $pendaftarans
  * @property Pendaftaran[] $pendaftarans0
- * @property Sidangdetil[] $sidangdetils
- * @property Sidangdetil[] $sidangdetils0
+ * @property SidangDetil[] $sidangDetils
+ * @property SidangDetil[] $sidangDetils0
  */
 class Dosen extends \yii\db\ActiveRecord
 {
@@ -36,13 +36,13 @@ class Dosen extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['KodeDosen'], 'required'],
-            [['IdUser'], 'integer'],
-            [['KodeDosen'], 'string', 'max' => 3],
-            [['NamaDosen'], 'string', 'max' => 200],
-            [['Tlp'], 'string', 'max' => 20],
-            [['KodeDosen'], 'unique'],
-            [['IdUser'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['IdUser' => 'id']],
+            [['kode_dosen'], 'required'],
+            [['id_user'], 'integer'],
+            [['kode_dosen'], 'string', 'max' => 3],
+            [['nama_dosen'], 'string', 'max' => 200],
+            [['tlp'], 'string', 'max' => 20],
+            [['kode_dosen'], 'unique'],
+            [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
         ];
     }
 
@@ -52,10 +52,10 @@ class Dosen extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'KodeDosen' => 'Kode Dosen',
-            'NamaDosen' => 'Nama Dosen',
-            'Tlp' => 'Tlp',
-            'IdUser' => 'Id User',
+            'kode_dosen' => 'Kode Dosen',
+            'nama_dosen' => 'Nama Dosen',
+            'tlp' => 'Tlp',
+            'id_user' => 'Id User',
         ];
     }
 
@@ -64,7 +64,7 @@ class Dosen extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'IdUser']);
+        return $this->hasOne(User::className(), ['id' => 'id_user']);
     }
 
     /**
@@ -72,15 +72,15 @@ class Dosen extends \yii\db\ActiveRecord
      */
     public function getJabatans()
     {
-        return $this->hasMany(Jabatan::className(), ['KodeDosen' => 'KodeDosen']);
+        return $this->hasMany(Jabatan::className(), ['kode_dosen' => 'kode_dosen']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getJadwalbimbingans()
+    public function getJadwalBimbingans()
     {
-        return $this->hasMany(Jadwalbimbingan::className(), ['KodeDosen' => 'KodeDosen']);
+        return $this->hasMany(JadwalBimbingan::className(), ['kode_dosen' => 'kode_dosen']);
     }
 
     /**
@@ -88,7 +88,7 @@ class Dosen extends \yii\db\ActiveRecord
      */
     public function getPendaftarans()
     {
-        return $this->hasMany(Pendaftaran::className(), ['KodePembimbing1' => 'KodeDosen']);
+        return $this->hasMany(Pendaftaran::className(), ['kode_pembimbing1' => 'kode_dosen']);
     }
 
     /**
@@ -96,22 +96,22 @@ class Dosen extends \yii\db\ActiveRecord
      */
     public function getPendaftarans0()
     {
-        return $this->hasMany(Pendaftaran::className(), ['KodePembimbing2' => 'KodeDosen']);
+        return $this->hasMany(Pendaftaran::className(), ['kode_pembimbing2' => 'kode_dosen']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSidangdetils()
+    public function getSidangDetils()
     {
-        return $this->hasMany(Sidangdetil::className(), ['Penguji1' => 'KodeDosen']);
+        return $this->hasMany(SidangDetil::className(), ['Penguji1' => 'kode_dosen']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSidangdetils0()
+    public function getSidangDetils0()
     {
-        return $this->hasMany(Sidangdetil::className(), ['Penguji2' => 'KodeDosen']);
+        return $this->hasMany(SidangDetil::className(), ['Penguji2' => 'kode_dosen']);
     }
 }

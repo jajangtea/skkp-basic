@@ -7,11 +7,11 @@ use Yii;
 /**
  * This is the model class for table "{{%persyaratan_jenis}}".
  *
- * @property int $idPersyaratanJenis
- * @property int $idJenisSidang
- * @property int $idPersyaratan
+ * @property int $id_persyaratanJenis
+ * @property int $id_jenis_sidang
+ * @property int $id_persyaratan
  *
- * @property Jenissidang $jenisSidang
+ * @property JenisSidang $jenisSidang
  * @property Persyaratan $persyaratan
  */
 class PersyaratanJenis extends \yii\db\ActiveRecord
@@ -30,9 +30,9 @@ class PersyaratanJenis extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idJenisSidang', 'idPersyaratan'], 'integer'],
-            [['idJenisSidang'], 'exist', 'skipOnError' => true, 'targetClass' => Jenissidang::className(), 'targetAttribute' => ['idJenisSidang' => 'IDJenisSidang']],
-            [['idPersyaratan'], 'exist', 'skipOnError' => true, 'targetClass' => Persyaratan::className(), 'targetAttribute' => ['idPersyaratan' => 'idPersyaratan']],
+            [['id_jenis_sidang', 'id_persyaratan'], 'integer'],
+            [['id_jenis_sidang'], 'exist', 'skipOnError' => true, 'targetClass' => JenisSidang::className(), 'targetAttribute' => ['id_jenis_sidang' => 'id_jenis_sidang']],
+            [['id_persyaratan'], 'exist', 'skipOnError' => true, 'targetClass' => Persyaratan::className(), 'targetAttribute' => ['id_persyaratan' => 'id_persyaratan']],
         ];
     }
 
@@ -42,9 +42,9 @@ class PersyaratanJenis extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idPersyaratanJenis' => 'Id Persyaratan Jenis',
-            'idJenisSidang' => 'Id Jenis Sidang',
-            'idPersyaratan' => 'Id Persyaratan',
+            'id_persyaratanJenis' => 'Id Persyaratan Jenis',
+            'id_jenis_sidang' => 'Id Jenis Sidang',
+            'id_persyaratan' => 'Id Persyaratan',
         ];
     }
 
@@ -53,7 +53,7 @@ class PersyaratanJenis extends \yii\db\ActiveRecord
      */
     public function getJenisSidang()
     {
-        return $this->hasOne(Jenissidang::className(), ['IDJenisSidang' => 'idJenisSidang']);
+        return $this->hasOne(JenisSidang::className(), ['id_jenis_sidang' => 'id_jenis_sidang']);
     }
 
     /**
@@ -61,6 +61,6 @@ class PersyaratanJenis extends \yii\db\ActiveRecord
      */
     public function getPersyaratan()
     {
-        return $this->hasOne(Persyaratan::className(), ['idPersyaratan' => 'idPersyaratan']);
+        return $this->hasOne(Persyaratan::className(), ['id_persyaratan' => 'id_persyaratan']);
     }
 }

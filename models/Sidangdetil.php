@@ -5,25 +5,25 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%sidangdetil}}".
+ * This is the model class for table "{{%sidang_detil}}".
  *
- * @property int $IdSidangDetil
- * @property int $IdPendaftaran
- * @property string $Penguji1
- * @property string $Penguji2
+ * @property int $id_sidang_detil
+ * @property int $id_pendaftaran
+ * @property string $penguji1
+ * @property string $penguji2
  *
  * @property Pendaftaran $pendaftaran
- * @property Dosen $penguji1
- * @property Dosen $penguji2
+ * @property Dosen $penguji10
+ * @property Dosen $penguji20
  */
-class Sidangdetil extends \yii\db\ActiveRecord
+class SidangDetil extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return '{{%sidangdetil}}';
+        return '{{%sidang_detil}}';
     }
 
     /**
@@ -32,11 +32,11 @@ class Sidangdetil extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['IdPendaftaran'], 'integer'],
-            [['Penguji1', 'Penguji2'], 'string', 'max' => 20],
-            [['IdPendaftaran'], 'exist', 'skipOnError' => true, 'targetClass' => Pendaftaran::className(), 'targetAttribute' => ['IdPendaftaran' => 'idPendaftaran']],
-            [['Penguji1'], 'exist', 'skipOnError' => true, 'targetClass' => Dosen::className(), 'targetAttribute' => ['Penguji1' => 'KodeDosen']],
-            [['Penguji2'], 'exist', 'skipOnError' => true, 'targetClass' => Dosen::className(), 'targetAttribute' => ['Penguji2' => 'KodeDosen']],
+            [['id_pendaftaran'], 'integer'],
+            [['penguji1', 'penguji2'], 'string', 'max' => 20],
+            [['id_pendaftaran'], 'exist', 'skipOnError' => true, 'targetClass' => Pendaftaran::className(), 'targetAttribute' => ['id_pendaftaran' => 'id_pendaftaran']],
+            [['Penguji1'], 'exist', 'skipOnError' => true, 'targetClass' => Dosen::className(), 'targetAttribute' => ['Penguji1' => 'kode_dosen']],
+            [['Penguji2'], 'exist', 'skipOnError' => true, 'targetClass' => Dosen::className(), 'targetAttribute' => ['Penguji2' => 'kode_dosen']],
         ];
     }
 
@@ -46,10 +46,10 @@ class Sidangdetil extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'IdSidangDetil' => 'Id Sidang Detil',
-            'IdPendaftaran' => 'Id Pendaftaran',
-            'Penguji1' => 'Penguji1',
-            'Penguji2' => 'Penguji2',
+            'id_sidang_detil' => 'Id Sidang Detil',
+            'id_pendaftaran' => 'Id Pendaftaran',
+            'penguji1' => 'Penguji1',
+            'penguji2' => 'Penguji2',
         ];
     }
 
@@ -58,22 +58,22 @@ class Sidangdetil extends \yii\db\ActiveRecord
      */
     public function getPendaftaran()
     {
-        return $this->hasOne(Pendaftaran::className(), ['idPendaftaran' => 'IdPendaftaran']);
+        return $this->hasOne(Pendaftaran::className(), ['id_pendaftaran' => 'id_pendaftaran']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPenguji1()
+    public function getPenguji10()
     {
-        return $this->hasOne(Dosen::className(), ['KodeDosen' => 'Penguji1']);
+        return $this->hasOne(Dosen::className(), ['kode_dosen' => 'Penguji1']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPenguji2()
+    public function getPenguji20()
     {
-        return $this->hasOne(Dosen::className(), ['KodeDosen' => 'Penguji2']);
+        return $this->hasOne(Dosen::className(), ['kode_dosen' => 'Penguji2']);
     }
 }

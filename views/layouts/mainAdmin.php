@@ -32,7 +32,7 @@ AppAsset::register($this);
                 'brandLabel' => "SKKP <span>STT INDONESIA</span>",
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
-                    'class' => 'class="navbar navbar-default navbar-inverse yamm navbar-static-top"',
+                    'class' => '',
                 ],
             ]);
             $menuItems = [
@@ -40,18 +40,7 @@ AppAsset::register($this);
                     ['label' => 'About', 'url' => ['/site/about']],
                     ['label' => 'Contact', 'url' => ['/site/contact']],
             ];
-            if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-                $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-            } else {
-                $menuItems[] = '<li>'
-                        . Html::beginForm(['/site/logout'], 'post')
-                        . Html::submitButton(
-                                'Logout (' . Yii::$app->user->identity->username . ')', ['class' => 'btn btn-link logout']
-                        )
-                        . Html::endForm()
-                        . '</li>';
-            }
+            
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => $menuItems,

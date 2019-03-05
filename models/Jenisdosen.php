@@ -5,21 +5,21 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%jenisdosen}}".
+ * This is the model class for table "{{%jenis_dosen}}".
  *
- * @property string $IdJenisDosen
- * @property string $NamaJenis
+ * @property string $id_jenis_dosen
+ * @property string $nama_jenis
  *
  * @property Jabatan[] $jabatans
  */
-class Jenisdosen extends \yii\db\ActiveRecord
+class JenisDosen extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return '{{%jenisdosen}}';
+        return '{{%jenis_dosen}}';
     }
 
     /**
@@ -28,10 +28,10 @@ class Jenisdosen extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['IdJenisDosen'], 'required'],
-            [['IdJenisDosen'], 'string', 'max' => 3],
-            [['NamaJenis'], 'string', 'max' => 50],
-            [['IdJenisDosen'], 'unique'],
+            [['id_jenis_dosen'], 'required'],
+            [['id_jenis_dosen'], 'string', 'max' => 3],
+            [['nama_jenis'], 'string', 'max' => 50],
+            [['id_jenis_dosen'], 'unique'],
         ];
     }
 
@@ -41,8 +41,8 @@ class Jenisdosen extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'IdJenisDosen' => 'Id Jenis Dosen',
-            'NamaJenis' => 'Nama Jenis',
+            'id_jenis_dosen' => 'Id Jenis Dosen',
+            'nama_jenis' => 'Nama Jenis',
         ];
     }
 
@@ -51,6 +51,6 @@ class Jenisdosen extends \yii\db\ActiveRecord
      */
     public function getJabatans()
     {
-        return $this->hasMany(Jabatan::className(), ['IdJenisDosen' => 'IdJenisDosen']);
+        return $this->hasMany(Jabatan::className(), ['id_jenis_dosen' => 'id_jenis_dosen']);
     }
 }

@@ -7,8 +7,8 @@ use Yii;
 /**
  * This is the model class for table "{{%persyaratan}}".
  *
- * @property int $idPersyaratan
- * @property string $namaPersyaratan
+ * @property int $id_persyaratan
+ * @property string $nama_persyaratan
  *
  * @property PersyaratanJenis[] $persyaratanJenis
  */
@@ -28,7 +28,7 @@ class Persyaratan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['namaPersyaratan'], 'string', 'max' => 200],
+            [['nama_persyaratan'], 'string', 'max' => 200],
         ];
     }
 
@@ -38,8 +38,8 @@ class Persyaratan extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idPersyaratan' => 'Id Persyaratan',
-            'namaPersyaratan' => 'Nama Persyaratan',
+            'id_persyaratan' => 'Id Persyaratan',
+            'nama_persyaratan' => 'Nama Persyaratan',
         ];
     }
 
@@ -48,6 +48,6 @@ class Persyaratan extends \yii\db\ActiveRecord
      */
     public function getPersyaratanJenis()
     {
-        return $this->hasMany(PersyaratanJenis::className(), ['idPersyaratan' => 'idPersyaratan']);
+        return $this->hasMany(PersyaratanJenis::className(), ['id_persyaratan' => 'id_persyaratan']);
     }
 }

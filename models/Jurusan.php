@@ -7,8 +7,8 @@ use Yii;
 /**
  * This is the model class for table "{{%jurusan}}".
  *
- * @property string $KodeJurusan
- * @property string $NamaJurusan
+ * @property string $kode_jurusan
+ * @property string $nama_jurusan
  *
  * @property Mahasiswa[] $mahasiswas
  */
@@ -28,10 +28,10 @@ class Jurusan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['KodeJurusan'], 'required'],
-            [['KodeJurusan'], 'string', 'max' => 50],
-            [['NamaJurusan'], 'string', 'max' => 100],
-            [['KodeJurusan'], 'unique'],
+            [['kode_jurusan'], 'required'],
+            [['kode_jurusan'], 'string', 'max' => 50],
+            [['nama_jurusan'], 'string', 'max' => 100],
+            [['kode_jurusan'], 'unique'],
         ];
     }
 
@@ -41,8 +41,8 @@ class Jurusan extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'KodeJurusan' => 'Kode Jurusan',
-            'NamaJurusan' => 'Nama Jurusan',
+            'kode_jurusan' => 'Kode Jurusan',
+            'nama_jurusan' => 'Nama Jurusan',
         ];
     }
 
@@ -51,6 +51,6 @@ class Jurusan extends \yii\db\ActiveRecord
      */
     public function getMahasiswas()
     {
-        return $this->hasMany(Mahasiswa::className(), ['KodeJurusan' => 'KodeJurusan']);
+        return $this->hasMany(Mahasiswa::className(), ['kode_jurusan' => 'kode_jurusan']);
     }
 }

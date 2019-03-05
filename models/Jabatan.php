@@ -7,12 +7,12 @@ use Yii;
 /**
  * This is the model class for table "{{%jabatan}}".
  *
- * @property int $IdJabatan
- * @property string $KodeDosen
- * @property string $IdJenisDosen
+ * @property int $id_jabatan
+ * @property string $kode_dosen
+ * @property string $id_jenis_dosen
  *
  * @property Dosen $kodeDosen
- * @property Jenisdosen $jenisDosen
+ * @property JenisDosen $jenisDosen
  */
 class Jabatan extends \yii\db\ActiveRecord
 {
@@ -30,9 +30,9 @@ class Jabatan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['KodeDosen', 'IdJenisDosen'], 'string', 'max' => 3],
-            [['KodeDosen'], 'exist', 'skipOnError' => true, 'targetClass' => Dosen::className(), 'targetAttribute' => ['KodeDosen' => 'KodeDosen']],
-            [['IdJenisDosen'], 'exist', 'skipOnError' => true, 'targetClass' => Jenisdosen::className(), 'targetAttribute' => ['IdJenisDosen' => 'IdJenisDosen']],
+            [['kode_dosen', 'id_jenis_dosen'], 'string', 'max' => 3],
+            [['kode_dosen'], 'exist', 'skipOnError' => true, 'targetClass' => Dosen::className(), 'targetAttribute' => ['kode_dosen' => 'kode_dosen']],
+            [['id_jenis_dosen'], 'exist', 'skipOnError' => true, 'targetClass' => JenisDosen::className(), 'targetAttribute' => ['id_jenis_dosen' => 'id_jenis_dosen']],
         ];
     }
 
@@ -42,9 +42,9 @@ class Jabatan extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'IdJabatan' => 'Id Jabatan',
-            'KodeDosen' => 'Kode Dosen',
-            'IdJenisDosen' => 'Id Jenis Dosen',
+            'id_jabatan' => 'Id Jabatan',
+            'kode_dosen' => 'Kode Dosen',
+            'id_jenis_dosen' => 'Id Jenis Dosen',
         ];
     }
 
@@ -53,7 +53,7 @@ class Jabatan extends \yii\db\ActiveRecord
      */
     public function getKodeDosen()
     {
-        return $this->hasOne(Dosen::className(), ['KodeDosen' => 'KodeDosen']);
+        return $this->hasOne(Dosen::className(), ['kode_dosen' => 'kode_dosen']);
     }
 
     /**
@@ -61,6 +61,6 @@ class Jabatan extends \yii\db\ActiveRecord
      */
     public function getJenisDosen()
     {
-        return $this->hasOne(Jenisdosen::className(), ['IdJenisDosen' => 'IdJenisDosen']);
+        return $this->hasOne(JenisDosen::className(), ['id_jenis_dosen' => 'id_jenis_dosen']);
     }
 }

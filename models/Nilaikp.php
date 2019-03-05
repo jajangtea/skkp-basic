@@ -5,29 +5,29 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%nilaikp}}".
+ * This is the model class for table "{{%nilai_kp}}".
  *
- * @property int $IdNilaiKp
- * @property int $NIM
- * @property double $NilaiPembimbing
- * @property double $NilaiPenguji
- * @property double $NilaiPerusahaan
- * @property double $NA
- * @property string $Index
- * @property int $idPendaftaran
- * @property int $idPengajuan
+ * @property int $id_nilai_kp
+ * @property int $nim
+ * @property double $nilai_pembimbing
+ * @property double $nilai_penguji
+ * @property double $nilai_perusahaan
+ * @property double $na
+ * @property string $index
+ * @property int $id_pendaftaran
+ * @property int $id_pengajuan
  *
  * @property Mahasiswa $nIM
  * @property Pendaftaran $pendaftaran
  */
-class Nilaikp extends \yii\db\ActiveRecord
+class NilaiKp extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return '{{%nilaikp}}';
+        return '{{%nilai_kp}}';
     }
 
     /**
@@ -36,12 +36,12 @@ class Nilaikp extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['NIM', 'idPendaftaran', 'idPengajuan'], 'integer'],
-            [['NilaiPembimbing', 'NilaiPenguji', 'NilaiPerusahaan', 'NA'], 'number'],
-            [['idPendaftaran', 'idPengajuan'], 'required'],
-            [['Index'], 'string', 'max' => 2],
+            [['nim', 'id_pendaftaran', 'id_pengajuan'], 'integer'],
+            [['nilai_pembimbing', 'nilai_penguji', 'nilai_perusahaan', 'na'], 'number'],
+            [['id_pendaftaran', 'id_pengajuan'], 'required'],
+            [['index'], 'string', 'max' => 2],
             [['NIM'], 'exist', 'skipOnError' => true, 'targetClass' => Mahasiswa::className(), 'targetAttribute' => ['NIM' => 'NIM']],
-            [['idPendaftaran'], 'exist', 'skipOnError' => true, 'targetClass' => Pendaftaran::className(), 'targetAttribute' => ['idPendaftaran' => 'idPendaftaran']],
+            [['id_pendaftaran'], 'exist', 'skipOnError' => true, 'targetClass' => Pendaftaran::className(), 'targetAttribute' => ['id_pendaftaran' => 'id_pendaftaran']],
         ];
     }
 
@@ -51,15 +51,15 @@ class Nilaikp extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'IdNilaiKp' => 'Id Nilai Kp',
-            'NIM' => 'Nim',
-            'NilaiPembimbing' => 'Nilai Pembimbing',
-            'NilaiPenguji' => 'Nilai Penguji',
-            'NilaiPerusahaan' => 'Nilai Perusahaan',
-            'NA' => 'Na',
-            'Index' => 'Index',
-            'idPendaftaran' => 'Id Pendaftaran',
-            'idPengajuan' => 'Id Pengajuan',
+            'id_nilai_kp' => 'Id Nilai Kp',
+            'nim' => 'Nim',
+            'nilai_pembimbing' => 'Nilai Pembimbing',
+            'nilai_penguji' => 'Nilai Penguji',
+            'nilai_perusahaan' => 'Nilai Perusahaan',
+            'na' => 'Na',
+            'index' => 'Index',
+            'id_pendaftaran' => 'Id Pendaftaran',
+            'id_pengajuan' => 'Id Pengajuan',
         ];
     }
 
@@ -76,6 +76,6 @@ class Nilaikp extends \yii\db\ActiveRecord
      */
     public function getPendaftaran()
     {
-        return $this->hasOne(Pendaftaran::className(), ['idPendaftaran' => 'idPendaftaran']);
+        return $this->hasOne(Pendaftaran::className(), ['id_pendaftaran' => 'id_pendaftaran']);
     }
 }

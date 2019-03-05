@@ -5,21 +5,21 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%statusproposal}}".
+ * This is the model class for table "{{%status_proposal}}".
  *
- * @property int $idstatusProp
- * @property string $nstatusProposal
+ * @property int $id_status_proposal
+ * @property string $n_status_proposal
  *
  * @property Pengajuan[] $pengajuans
  */
-class Statusproposal extends \yii\db\ActiveRecord
+class StatusProposal extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return '{{%statusproposal}}';
+        return '{{%status_proposal}}';
     }
 
     /**
@@ -28,8 +28,8 @@ class Statusproposal extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nstatusProposal'], 'required'],
-            [['nstatusProposal'], 'string', 'max' => 259],
+            [['n_status_proposal'], 'required'],
+            [['n_status_proposal'], 'string', 'max' => 259],
         ];
     }
 
@@ -39,8 +39,8 @@ class Statusproposal extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idstatusProp' => 'Idstatus Prop',
-            'nstatusProposal' => 'Nstatus Proposal',
+            'id_status_proposal' => 'Id Status Proposal',
+            'n_status_proposal' => 'N Status Proposal',
         ];
     }
 
@@ -49,6 +49,6 @@ class Statusproposal extends \yii\db\ActiveRecord
      */
     public function getPengajuans()
     {
-        return $this->hasMany(Pengajuan::className(), ['IDstatusProposal' => 'idstatusProp']);
+        return $this->hasMany(Pengajuan::className(), ['id_status_proposal' => 'id_status_proposal']);
     }
 }

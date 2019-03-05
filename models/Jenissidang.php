@@ -5,24 +5,24 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%jenissidang}}".
+ * This is the model class for table "{{%jenis_sidang}}".
  *
- * @property int $IDJenisSidang
- * @property string $NamaSidang
- * @property double $NominalVakasi
+ * @property int $id_jenis_sidang
+ * @property string $nama_sidang
+ * @property double $nominal_vakasi
  *
  * @property Pengajuan[] $pengajuans
  * @property PersyaratanJenis[] $persyaratanJenis
- * @property Sidangmaster[] $sidangmasters
+ * @property SidangMaster[] $sidangMasters
  */
-class Jenissidang extends \yii\db\ActiveRecord
+class JenisSidang extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return '{{%jenissidang}}';
+        return '{{%jenis_sidang}}';
     }
 
     /**
@@ -31,11 +31,11 @@ class Jenissidang extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['IDJenisSidang', 'NominalVakasi'], 'required'],
-            [['IDJenisSidang'], 'integer'],
-            [['NominalVakasi'], 'number'],
-            [['NamaSidang'], 'string', 'max' => 50],
-            [['IDJenisSidang'], 'unique'],
+            [['id_jenis_sidang', 'nominal_vakasi'], 'required'],
+            [['id_jenis_sidang'], 'integer'],
+            [['nominal_vakasi'], 'number'],
+            [['nama_sidang'], 'string', 'max' => 50],
+            [['id_jenis_sidang'], 'unique'],
         ];
     }
 
@@ -45,9 +45,9 @@ class Jenissidang extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'IDJenisSidang' => 'Id Jenis Sidang',
-            'NamaSidang' => 'Nama Sidang',
-            'NominalVakasi' => 'Nominal Vakasi',
+            'id_jenis_sidang' => 'Id Jenis Sidang',
+            'nama_sidang' => 'Nama Sidang',
+            'nominal_vakasi' => 'Nominal Vakasi',
         ];
     }
 
@@ -56,7 +56,7 @@ class Jenissidang extends \yii\db\ActiveRecord
      */
     public function getPengajuans()
     {
-        return $this->hasMany(Pengajuan::className(), ['IDJenisSidang' => 'IDJenisSidang']);
+        return $this->hasMany(Pengajuan::className(), ['id_jenis_proposal' => 'id_jenis_sidang']);
     }
 
     /**
@@ -64,14 +64,14 @@ class Jenissidang extends \yii\db\ActiveRecord
      */
     public function getPersyaratanJenis()
     {
-        return $this->hasMany(PersyaratanJenis::className(), ['idJenisSidang' => 'IDJenisSidang']);
+        return $this->hasMany(PersyaratanJenis::className(), ['id_jenis_sidang' => 'id_jenis_sidang']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSidangmasters()
+    public function getSidangMasters()
     {
-        return $this->hasMany(Sidangmaster::className(), ['IDJenisSidang' => 'IDJenisSidang']);
+        return $this->hasMany(SidangMaster::className(), ['id_jenis_sidang' => 'id_jenis_sidang']);
     }
 }

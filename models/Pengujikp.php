@@ -5,23 +5,23 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%pengujikp}}".
+ * This is the model class for table "{{%penguji_kp}}".
  *
- * @property int $idPengujiKp
- * @property int $idPendaftaran
- * @property int $idUser
+ * @property int $id_penguji_kp
+ * @property int $id_pendaftaran
+ * @property int $id_user
  *
  * @property Pendaftaran $pendaftaran
  * @property User $user
  */
-class Pengujikp extends \yii\db\ActiveRecord
+class PengujiKp extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return '{{%pengujikp}}';
+        return '{{%penguji_kp}}';
     }
 
     /**
@@ -30,9 +30,9 @@ class Pengujikp extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idPendaftaran', 'idUser'], 'integer'],
-            [['idPendaftaran'], 'exist', 'skipOnError' => true, 'targetClass' => Pendaftaran::className(), 'targetAttribute' => ['idPendaftaran' => 'idPendaftaran']],
-            [['idUser'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['idUser' => 'id']],
+            [['id_pendaftaran', 'id_user'], 'integer'],
+            [['id_pendaftaran'], 'exist', 'skipOnError' => true, 'targetClass' => Pendaftaran::className(), 'targetAttribute' => ['id_pendaftaran' => 'id_pendaftaran']],
+            [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
         ];
     }
 
@@ -42,9 +42,9 @@ class Pengujikp extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idPengujiKp' => 'Id Penguji Kp',
-            'idPendaftaran' => 'Id Pendaftaran',
-            'idUser' => 'Id User',
+            'id_penguji_kp' => 'Id Penguji Kp',
+            'id_pendaftaran' => 'Id Pendaftaran',
+            'id_user' => 'Id User',
         ];
     }
 
@@ -53,7 +53,7 @@ class Pengujikp extends \yii\db\ActiveRecord
      */
     public function getPendaftaran()
     {
-        return $this->hasOne(Pendaftaran::className(), ['idPendaftaran' => 'idPendaftaran']);
+        return $this->hasOne(Pendaftaran::className(), ['id_pendaftaran' => 'id_pendaftaran']);
     }
 
     /**
@@ -61,6 +61,6 @@ class Pengujikp extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'idUser']);
+        return $this->hasOne(User::className(), ['id' => 'id_user']);
     }
 }

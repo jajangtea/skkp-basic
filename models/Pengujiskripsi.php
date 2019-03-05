@@ -5,26 +5,26 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%pengujiskripsi}}".
+ * This is the model class for table "{{%penguji_skripsi}}".
  *
- * @property int $idPengujiSkripsi
- * @property int $idPendaftaran
- * @property int $idUser
+ * @property int $id_penguji_skripsi
+ * @property int $id_pendaftaran
+ * @property int $id_user
  * @property double $nilai
- * @property int $idPengajuan
+ * @property int $id_pengajuan
  *
  * @property NilaiPenguji[] $nilaiPengujis
  * @property Pendaftaran $pendaftaran
  * @property User $user
  */
-class Pengujiskripsi extends \yii\db\ActiveRecord
+class PengujiSkripsi extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return '{{%pengujiskripsi}}';
+        return '{{%penguji_skripsi}}';
     }
 
     /**
@@ -33,11 +33,11 @@ class Pengujiskripsi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idPendaftaran', 'idUser', 'idPengajuan'], 'integer'],
-            [['nilai', 'idPengajuan'], 'required'],
+            [['id_pendaftaran', 'id_user', 'id_pengajuan'], 'integer'],
+            [['nilai', 'id_pengajuan'], 'required'],
             [['nilai'], 'number'],
-            [['idPendaftaran'], 'exist', 'skipOnError' => true, 'targetClass' => Pendaftaran::className(), 'targetAttribute' => ['idPendaftaran' => 'idPendaftaran']],
-            [['idUser'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['idUser' => 'id']],
+            [['id_pendaftaran'], 'exist', 'skipOnError' => true, 'targetClass' => Pendaftaran::className(), 'targetAttribute' => ['id_pendaftaran' => 'id_pendaftaran']],
+            [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
         ];
     }
 
@@ -47,11 +47,11 @@ class Pengujiskripsi extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idPengujiSkripsi' => 'Id Penguji Skripsi',
-            'idPendaftaran' => 'Id Pendaftaran',
-            'idUser' => 'Id User',
+            'id_penguji_skripsi' => 'Id Penguji Skripsi',
+            'id_pendaftaran' => 'Id Pendaftaran',
+            'id_user' => 'Id User',
             'nilai' => 'Nilai',
-            'idPengajuan' => 'Id Pengajuan',
+            'id_pengajuan' => 'Id Pengajuan',
         ];
     }
 
@@ -60,7 +60,7 @@ class Pengujiskripsi extends \yii\db\ActiveRecord
      */
     public function getNilaiPengujis()
     {
-        return $this->hasMany(NilaiPenguji::className(), ['idPengujiSkripsi' => 'idPengujiSkripsi']);
+        return $this->hasMany(NilaiPenguji::className(), ['id_penguji_skripsi' => 'id_penguji_skripsi']);
     }
 
     /**
@@ -68,7 +68,7 @@ class Pengujiskripsi extends \yii\db\ActiveRecord
      */
     public function getPendaftaran()
     {
-        return $this->hasOne(Pendaftaran::className(), ['idPendaftaran' => 'idPendaftaran']);
+        return $this->hasOne(Pendaftaran::className(), ['id_pendaftaran' => 'id_pendaftaran']);
     }
 
     /**
@@ -76,6 +76,6 @@ class Pengujiskripsi extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'idUser']);
+        return $this->hasOne(User::className(), ['id' => 'id_user']);
     }
 }

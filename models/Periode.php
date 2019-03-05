@@ -7,13 +7,13 @@ use Yii;
 /**
  * This is the model class for table "{{%periode}}".
  *
- * @property int $idPeriode
+ * @property int $id_periode
  * @property string $tgl
  * @property string $bulan
  * @property string $tahun
- * @property string $tglPeriode
- * @property string $statusVakasi
- * @property string $tglPencairan
+ * @property string $tgl_periode
+ * @property string $status_vakasi
+ * @property string $tgl_pencairan
  */
 class Periode extends \yii\db\ActiveRecord
 {
@@ -31,9 +31,9 @@ class Periode extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tglPeriode', 'tglPencairan'], 'safe'],
+            [['tgl_periode', 'tgl_pencairan'], 'safe'],
             [['tgl', 'bulan', 'tahun'], 'string', 'max' => 4],
-            [['statusVakasi'], 'string', 'max' => 20],
+            [['status_vakasi'], 'string', 'max' => 20],
         ];
     }
 
@@ -43,13 +43,13 @@ class Periode extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idPeriode' => 'Id Periode',
+            'id_periode' => 'Id Periode',
             'tgl' => 'Tgl',
             'bulan' => 'Bulan',
             'tahun' => 'Tahun',
-            'tglPeriode' => 'Tgl Periode',
-            'statusVakasi' => 'Status Vakasi',
-            'tglPencairan' => 'Tgl Pencairan',
+            'tgl_periode' => 'Tgl Periode',
+            'status_vakasi' => 'Status Vakasi',
+            'tgl_pencairan' => 'Tgl Pencairan',
         ];
     }
 }

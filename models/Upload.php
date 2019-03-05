@@ -7,11 +7,11 @@ use Yii;
 /**
  * This is the model class for table "{{%upload}}".
  *
- * @property int $idUpload
- * @property int $idPendaftaran
- * @property string $namaFile
- * @property string $ukuranFIle
- * @property int $idPersyaratan
+ * @property int $id_upload
+ * @property int $id_pendaftaran
+ * @property string $nama_file
+ * @property string $ukuran_fIle
+ * @property int $id_persyaratan
  */
 class Upload extends \yii\db\ActiveRecord
 {
@@ -29,8 +29,8 @@ class Upload extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idPendaftaran', 'idPersyaratan'], 'integer'],
-            [['namaFile', 'ukuranFIle'], 'string', 'max' => 300],
+            [['id_pendaftaran', 'id_persyaratan'], 'integer'],
+            [['nama_file', 'ukuran_fIle'], 'string', 'max' => 300],
         ];
     }
 
@@ -40,11 +40,11 @@ class Upload extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idUpload' => 'Id Upload',
-            'idPendaftaran' => 'Id Pendaftaran',
-            'namaFile' => 'Nama File',
-            'ukuranFIle' => 'Ukuran F Ile',
-            'idPersyaratan' => 'Id Persyaratan',
+            'id_upload' => 'Id Upload',
+            'id_pendaftaran' => 'Id Pendaftaran',
+            'nama_file' => 'Nama File',
+            'ukuran_fIle' => 'Ukuran F Ile',
+            'id_persyaratan' => 'Id Persyaratan',
         ];
     }
 }

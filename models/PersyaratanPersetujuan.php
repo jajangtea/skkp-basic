@@ -7,10 +7,10 @@ use Yii;
 /**
  * This is the model class for table "{{%persyaratan_persetujuan}}".
  *
- * @property int $idPersyaratanPersetujuan
- * @property int $idPersyaratan
- * @property int $idJenisSidang
- * @property int $idLevel
+ * @property int $id_persyaratan_persetujuan
+ * @property int $id_persyaratan
+ * @property int $id_jenis_sidang
+ * @property int $id_level
  */
 class PersyaratanPersetujuan extends \yii\db\ActiveRecord
 {
@@ -28,8 +28,8 @@ class PersyaratanPersetujuan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idPersyaratanPersetujuan'], 'required'],
-            [['idPersyaratanPersetujuan', 'idPersyaratan', 'idJenisSidang', 'idLevel'], 'integer'],
+            [['id_persyaratan_persetujuan'], 'required'],
+            [['id_persyaratan_persetujuan', 'id_persyaratan', 'id_jenis_sidang', 'id_level'], 'integer'],
         ];
     }
 
@@ -39,10 +39,10 @@ class PersyaratanPersetujuan extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idPersyaratanPersetujuan' => 'Id Persyaratan Persetujuan',
-            'idPersyaratan' => 'Id Persyaratan',
-            'idJenisSidang' => 'Id Jenis Sidang',
-            'idLevel' => 'Id Level',
+            'id_persyaratan_persetujuan' => 'Id Persyaratan Persetujuan',
+            'id_persyaratan' => 'Id Persyaratan',
+            'id_jenis_sidang' => 'Id Jenis Sidang',
+            'id_level' => 'Id Level',
         ];
     }
 }

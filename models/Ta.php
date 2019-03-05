@@ -7,11 +7,11 @@ use Yii;
 /**
  * This is the model class for table "{{%ta}}".
  *
- * @property int $IdTa
- * @property string $Tahun
- * @property string $Semester
+ * @property int $id_ta
+ * @property string $tahun
+ * @property string $semester
  *
- * @property Sidangmaster[] $sidangmasters
+ * @property SidangMaster[] $sidangMasters
  */
 class Ta extends \yii\db\ActiveRecord
 {
@@ -29,8 +29,8 @@ class Ta extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Tahun'], 'string', 'max' => 200],
-            [['Semester'], 'string', 'max' => 50],
+            [['tahun'], 'string', 'max' => 200],
+            [['semester'], 'string', 'max' => 50],
         ];
     }
 
@@ -40,17 +40,17 @@ class Ta extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'IdTa' => 'Id Ta',
-            'Tahun' => 'Tahun',
-            'Semester' => 'Semester',
+            'id_ta' => 'Id Ta',
+            'tahun' => 'Tahun',
+            'semester' => 'Semester',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSidangmasters()
+    public function getSidangMasters()
     {
-        return $this->hasMany(Sidangmaster::className(), ['IdTa' => 'IdTa']);
+        return $this->hasMany(SidangMaster::className(), ['id_ta' => 'id_ta']);
     }
 }

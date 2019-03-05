@@ -7,9 +7,9 @@ use Yii;
 /**
  * This is the model class for table "{{%persetujuan_pendaftaran}}".
  *
- * @property int $idPersetujuanPendaftaran
- * @property int $idPendaftaran
- * @property int $idPersetujuan
+ * @property int $id_persetujuan_pendaftaran
+ * @property int $id_pendaftaran
+ * @property int $id_persetujuan
  * @property string $status
  */
 class PersetujuanPendaftaran extends \yii\db\ActiveRecord
@@ -28,8 +28,8 @@ class PersetujuanPendaftaran extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idPersetujuanPendaftaran'], 'required'],
-            [['idPersetujuanPendaftaran', 'idPendaftaran', 'idPersetujuan'], 'integer'],
+            [['id_persetujuan_pendaftaran'], 'required'],
+            [['id_persetujuan_pendaftaran', 'id_pendaftaran', 'id_persetujuan'], 'integer'],
             [['status'], 'string', 'max' => 150],
         ];
     }
@@ -40,9 +40,9 @@ class PersetujuanPendaftaran extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idPersetujuanPendaftaran' => 'Id Persetujuan Pendaftaran',
-            'idPendaftaran' => 'Id Pendaftaran',
-            'idPersetujuan' => 'Id Persetujuan',
+            'id_persetujuan_pendaftaran' => 'Id Persetujuan Pendaftaran',
+            'id_pendaftaran' => 'Id Pendaftaran',
+            'id_persetujuan' => 'Id Persetujuan',
             'status' => 'Status',
         ];
     }

@@ -5,24 +5,24 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%nilaidetilskirpsi}}".
+ * This is the model class for table "{{%nilai_detil_skirpsi}}".
  *
- * @property int $idNilaiSkripsi
- * @property int $IdPendaftaran
- * @property double $NilaiPenguji1
- * @property double $NIlaiPenguji2
- * @property double $NPraSidang
+ * @property int $id_nilai_skripsi
+ * @property int $id_pendaftaran
+ * @property double $nilai_penguji1
+ * @property double $nIlai_penguji2
+ * @property double $npra_sidang
  *
  * @property Pendaftaran $pendaftaran
  */
-class Nilaidetilskirpsi extends \yii\db\ActiveRecord
+class NilaiDetilSkirpsi extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return '{{%nilaidetilskirpsi}}';
+        return '{{%nilai_detil_skirpsi}}';
     }
 
     /**
@@ -31,9 +31,9 @@ class Nilaidetilskirpsi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['IdPendaftaran'], 'integer'],
-            [['NilaiPenguji1', 'NIlaiPenguji2', 'NPraSidang'], 'number'],
-            [['IdPendaftaran'], 'exist', 'skipOnError' => true, 'targetClass' => Pendaftaran::className(), 'targetAttribute' => ['IdPendaftaran' => 'idPendaftaran']],
+            [['id_pendaftaran'], 'integer'],
+            [['nilai_penguji1', 'nIlai_penguji2', 'npra_sidang'], 'number'],
+            [['id_pendaftaran'], 'exist', 'skipOnError' => true, 'targetClass' => Pendaftaran::className(), 'targetAttribute' => ['id_pendaftaran' => 'id_pendaftaran']],
         ];
     }
 
@@ -43,11 +43,11 @@ class Nilaidetilskirpsi extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idNilaiSkripsi' => 'Id Nilai Skripsi',
-            'IdPendaftaran' => 'Id Pendaftaran',
-            'NilaiPenguji1' => 'Nilai Penguji1',
-            'NIlaiPenguji2' => 'N Ilai Penguji2',
-            'NPraSidang' => 'N Pra Sidang',
+            'id_nilai_skripsi' => 'Id Nilai Skripsi',
+            'id_pendaftaran' => 'Id Pendaftaran',
+            'nilai_penguji1' => 'Nilai Penguji1',
+            'nIlai_penguji2' => 'N Ilai Penguji2',
+            'npra_sidang' => 'Npra Sidang',
         ];
     }
 
@@ -56,6 +56,6 @@ class Nilaidetilskirpsi extends \yii\db\ActiveRecord
      */
     public function getPendaftaran()
     {
-        return $this->hasOne(Pendaftaran::className(), ['idPendaftaran' => 'IdPendaftaran']);
+        return $this->hasOne(Pendaftaran::className(), ['id_pendaftaran' => 'id_pendaftaran']);
     }
 }

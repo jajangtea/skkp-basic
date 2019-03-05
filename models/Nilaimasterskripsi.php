@@ -5,32 +5,32 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%nilaimasterskripsi}}".
+ * This is the model class for table "{{%nilai_master_skripsi}}".
  *
- * @property string $IdNMSkripsi
- * @property double $NKompre
- * @property double $NPraSidang
- * @property double $NSidangSkripsi
- * @property double $NPembimbing
- * @property double $NA
- * @property string $Index
- * @property int $NIM
- * @property int $idPendaftaran
+ * @property string $id_nm_skripsi
+ * @property double $n_kompre
+ * @property double $n_pra_sidang
+ * @property double $n_sidang_skripsi
+ * @property double $n_pembimbing
+ * @property double $na
+ * @property string $index
+ * @property int $nim
+ * @property int $id_pendaftaran
  * @property string $status
- * @property int $idPengajuan
+ * @property int $id_pengajuan
  *
  * @property Mahasiswa $nIM
  * @property Pendaftaran $pendaftaran
  * @property Pengajuan $pengajuan
  */
-class Nilaimasterskripsi extends \yii\db\ActiveRecord
+class NilaiMasterSkripsi extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return '{{%nilaimasterskripsi}}';
+        return '{{%nilai_master_skripsi}}';
     }
 
     /**
@@ -39,15 +39,15 @@ class Nilaimasterskripsi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['NKompre', 'NPraSidang', 'NSidangSkripsi', 'NPembimbing', 'NA'], 'number'],
-            [['NIM', 'status', 'idPengajuan'], 'required'],
-            [['NIM', 'idPendaftaran', 'idPengajuan'], 'integer'],
-            [['Index'], 'string', 'max' => 2],
+            [['n_kompre', 'n_pra_sidang', 'n_sidang_skripsi', 'n_pembimbing', 'na'], 'number'],
+            [['nim', 'status', 'id_pengajuan'], 'required'],
+            [['nim', 'id_pendaftaran', 'id_pengajuan'], 'integer'],
+            [['index'], 'string', 'max' => 2],
             [['status'], 'string', 'max' => 100],
-            [['NIM'], 'unique'],
+            [['nim'], 'unique'],
             [['NIM'], 'exist', 'skipOnError' => true, 'targetClass' => Mahasiswa::className(), 'targetAttribute' => ['NIM' => 'NIM']],
-            [['idPendaftaran'], 'exist', 'skipOnError' => true, 'targetClass' => Pendaftaran::className(), 'targetAttribute' => ['idPendaftaran' => 'idPendaftaran']],
-            [['idPengajuan'], 'exist', 'skipOnError' => true, 'targetClass' => Pengajuan::className(), 'targetAttribute' => ['idPengajuan' => 'IDPengajuan']],
+            [['id_pendaftaran'], 'exist', 'skipOnError' => true, 'targetClass' => Pendaftaran::className(), 'targetAttribute' => ['id_pendaftaran' => 'id_pendaftaran']],
+            [['id_pengajuan'], 'exist', 'skipOnError' => true, 'targetClass' => Pengajuan::className(), 'targetAttribute' => ['id_pengajuan' => 'id_pengajuan']],
         ];
     }
 
@@ -57,17 +57,17 @@ class Nilaimasterskripsi extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'IdNMSkripsi' => 'Id Nm Skripsi',
-            'NKompre' => 'N Kompre',
-            'NPraSidang' => 'N Pra Sidang',
-            'NSidangSkripsi' => 'N Sidang Skripsi',
-            'NPembimbing' => 'N Pembimbing',
-            'NA' => 'Na',
-            'Index' => 'Index',
-            'NIM' => 'Nim',
-            'idPendaftaran' => 'Id Pendaftaran',
+            'id_nm_skripsi' => 'Id Nm Skripsi',
+            'n_kompre' => 'N Kompre',
+            'n_pra_sidang' => 'N Pra Sidang',
+            'n_sidang_skripsi' => 'N Sidang Skripsi',
+            'n_pembimbing' => 'N Pembimbing',
+            'na' => 'Na',
+            'index' => 'Index',
+            'nim' => 'Nim',
+            'id_pendaftaran' => 'Id Pendaftaran',
             'status' => 'Status',
-            'idPengajuan' => 'Id Pengajuan',
+            'id_pengajuan' => 'Id Pengajuan',
         ];
     }
 
@@ -84,7 +84,7 @@ class Nilaimasterskripsi extends \yii\db\ActiveRecord
      */
     public function getPendaftaran()
     {
-        return $this->hasOne(Pendaftaran::className(), ['idPendaftaran' => 'idPendaftaran']);
+        return $this->hasOne(Pendaftaran::className(), ['id_pendaftaran' => 'id_pendaftaran']);
     }
 
     /**
@@ -92,6 +92,6 @@ class Nilaimasterskripsi extends \yii\db\ActiveRecord
      */
     public function getPengajuan()
     {
-        return $this->hasOne(Pengajuan::className(), ['IDPengajuan' => 'idPengajuan']);
+        return $this->hasOne(Pengajuan::className(), ['id_pengajuan' => 'id_pengajuan']);
     }
 }

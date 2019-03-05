@@ -7,9 +7,9 @@ use Yii;
 /**
  * This is the model class for table "{{%persetujuan}}".
  *
- * @property int $idPersetujuan
- * @property int $idPersyaratanPersetujuan
- * @property string $kodeDosen
+ * @property int $id_persetujuan
+ * @property int $id_persyaratan_persetujuan
+ * @property string $kode_dosen
  */
 class Persetujuan extends \yii\db\ActiveRecord
 {
@@ -27,9 +27,9 @@ class Persetujuan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idPersetujuan'], 'required'],
-            [['idPersetujuan', 'idPersyaratanPersetujuan'], 'integer'],
-            [['kodeDosen'], 'string', 'max' => 3],
+            [['id_persetujuan'], 'required'],
+            [['id_persetujuan', 'id_persyaratan_persetujuan'], 'integer'],
+            [['kode_dosen'], 'string', 'max' => 3],
         ];
     }
 
@@ -39,9 +39,9 @@ class Persetujuan extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idPersetujuan' => 'Id Persetujuan',
-            'idPersyaratanPersetujuan' => 'Id Persyaratan Persetujuan',
-            'kodeDosen' => 'Kode Dosen',
+            'id_persetujuan' => 'Id Persetujuan',
+            'id_persyaratan_persetujuan' => 'Id Persyaratan Persetujuan',
+            'kode_dosen' => 'Kode Dosen',
         ];
     }
 }

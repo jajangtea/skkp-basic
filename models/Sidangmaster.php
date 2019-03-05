@@ -5,29 +5,29 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%sidangmaster}}".
+ * This is the model class for table "{{%sidang_master}}".
  *
- * @property int $IdSidang
- * @property string $Tanggal
- * @property int $IDJenisSidang
- * @property int $IdTa
+ * @property int $id_sidang
+ * @property string $tanggal
+ * @property int $id_jenis_sidang
+ * @property int $id_ta
  * @property int $status
- * @property string $tglBuka
- * @property string $tglTutup
- * @property int $idPeriode
+ * @property string $tgl_buka
+ * @property string $tgl_tutup
+ * @property int $id_periode
  *
  * @property Pendaftaran[] $pendaftarans
- * @property Jenissidang $jenisSidang
+ * @property JenisSidang $jenisSidang
  * @property Ta $ta
  */
-class Sidangmaster extends \yii\db\ActiveRecord
+class SidangMaster extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return '{{%sidangmaster}}';
+        return '{{%sidang_master}}';
     }
 
     /**
@@ -36,11 +36,11 @@ class Sidangmaster extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Tanggal', 'tglBuka', 'tglTutup'], 'safe'],
-            [['IDJenisSidang', 'IdTa', 'status', 'idPeriode'], 'integer'],
-            [['idPeriode'], 'required'],
-            [['IDJenisSidang'], 'exist', 'skipOnError' => true, 'targetClass' => Jenissidang::className(), 'targetAttribute' => ['IDJenisSidang' => 'IDJenisSidang']],
-            [['IdTa'], 'exist', 'skipOnError' => true, 'targetClass' => Ta::className(), 'targetAttribute' => ['IdTa' => 'IdTa']],
+            [['tanggal', 'tgl_buka', 'tgl_tutup'], 'safe'],
+            [['id_jenis_sidang', 'id_ta', 'status', 'id_periode'], 'integer'],
+            [['id_periode'], 'required'],
+            [['id_jenis_sidang'], 'exist', 'skipOnError' => true, 'targetClass' => JenisSidang::className(), 'targetAttribute' => ['id_jenis_sidang' => 'id_jenis_sidang']],
+            [['id_ta'], 'exist', 'skipOnError' => true, 'targetClass' => Ta::className(), 'targetAttribute' => ['id_ta' => 'id_ta']],
         ];
     }
 
@@ -50,14 +50,14 @@ class Sidangmaster extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'IdSidang' => 'Id Sidang',
-            'Tanggal' => 'Tanggal',
-            'IDJenisSidang' => 'Id Jenis Sidang',
-            'IdTa' => 'Id Ta',
+            'id_sidang' => 'Id Sidang',
+            'tanggal' => 'Tanggal',
+            'id_jenis_sidang' => 'Id Jenis Sidang',
+            'id_ta' => 'Id Ta',
             'status' => 'Status',
-            'tglBuka' => 'Tgl Buka',
-            'tglTutup' => 'Tgl Tutup',
-            'idPeriode' => 'Id Periode',
+            'tgl_buka' => 'Tgl Buka',
+            'tgl_tutup' => 'Tgl Tutup',
+            'id_periode' => 'Id Periode',
         ];
     }
 
@@ -66,7 +66,7 @@ class Sidangmaster extends \yii\db\ActiveRecord
      */
     public function getPendaftarans()
     {
-        return $this->hasMany(Pendaftaran::className(), ['IdSidang' => 'IdSidang']);
+        return $this->hasMany(Pendaftaran::className(), ['id_sidang' => 'id_sidang']);
     }
 
     /**
@@ -74,7 +74,7 @@ class Sidangmaster extends \yii\db\ActiveRecord
      */
     public function getJenisSidang()
     {
-        return $this->hasOne(Jenissidang::className(), ['IDJenisSidang' => 'IDJenisSidang']);
+        return $this->hasOne(JenisSidang::className(), ['id_jenis_sidang' => 'id_jenis_sidang']);
     }
 
     /**
@@ -82,6 +82,6 @@ class Sidangmaster extends \yii\db\ActiveRecord
      */
     public function getTa()
     {
-        return $this->hasOne(Ta::className(), ['IdTa' => 'IdTa']);
+        return $this->hasOne(Ta::className(), ['id_ta' => 'id_ta']);
     }
 }

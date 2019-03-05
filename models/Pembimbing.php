@@ -7,9 +7,9 @@ use Yii;
 /**
  * This is the model class for table "{{%pembimbing}}".
  *
- * @property int $idPembimbing
- * @property int $idDosen
- * @property int $idPengajuan
+ * @property int $id_pembimbing
+ * @property int $id_dosen
+ * @property int $id_pengajuan
  * @property string $status
  *
  * @property User $dosen
@@ -31,11 +31,11 @@ class Pembimbing extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idDosen', 'idPengajuan'], 'integer'],
+            [['id_dosen', 'id_pengajuan'], 'integer'],
             [['status'], 'required'],
             [['status'], 'string', 'max' => 50],
-            [['idDosen'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['idDosen' => 'id']],
-            [['idPengajuan'], 'exist', 'skipOnError' => true, 'targetClass' => Pengajuan::className(), 'targetAttribute' => ['idPengajuan' => 'IDPengajuan']],
+            [['id_dosen'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_dosen' => 'id']],
+            [['id_pengajuan'], 'exist', 'skipOnError' => true, 'targetClass' => Pengajuan::className(), 'targetAttribute' => ['id_pengajuan' => 'id_pengajuan']],
         ];
     }
 
@@ -45,9 +45,9 @@ class Pembimbing extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idPembimbing' => 'Id Pembimbing',
-            'idDosen' => 'Id Dosen',
-            'idPengajuan' => 'Id Pengajuan',
+            'id_pembimbing' => 'Id Pembimbing',
+            'id_dosen' => 'Id Dosen',
+            'id_pengajuan' => 'Id Pengajuan',
             'status' => 'Status',
         ];
     }
@@ -57,7 +57,7 @@ class Pembimbing extends \yii\db\ActiveRecord
      */
     public function getDosen()
     {
-        return $this->hasOne(User::className(), ['id' => 'idDosen']);
+        return $this->hasOne(User::className(), ['id' => 'id_dosen']);
     }
 
     /**
@@ -65,6 +65,6 @@ class Pembimbing extends \yii\db\ActiveRecord
      */
     public function getPengajuan()
     {
-        return $this->hasOne(Pengajuan::className(), ['IDPengajuan' => 'idPengajuan']);
+        return $this->hasOne(Pengajuan::className(), ['id_pengajuan' => 'id_pengajuan']);
     }
 }
