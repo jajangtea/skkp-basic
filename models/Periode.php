@@ -83,7 +83,7 @@ class Periode extends \yii\db\ActiveRecord {
         $todayYear = date("y");
         $number = cal_days_in_month(CAL_GREGORIAN, $todayMonth, $todayYear); // 31
         for ($i = 1; $i < $number; $i++) {
-            $no[] = array($i) . ',';
+            $no = array_map('intval', str_split($i));
             return $no;
         }
     }
