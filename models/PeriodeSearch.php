@@ -40,12 +40,15 @@ class PeriodeSearch extends Periode
      */
     public function search($params)
     {
-        $query = Periode::find();
+        $query = Periode::find()->orderBy(['tahun'=>SORT_DESC,'bulan'=>SORT_DESC,'tgl'=>SORT_DESC]);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination'=>[
+                'pageSize'=>10,
+            ]
         ]);
 
         $this->load($params);
@@ -70,4 +73,6 @@ class PeriodeSearch extends Periode
 
         return $dataProvider;
     }
+    
+    
 }
