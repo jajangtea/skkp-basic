@@ -3,6 +3,7 @@
 /* @var $content string */
 
 use app\assets\AppAsset;
+use yii\bootstrap\Modal;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;
@@ -40,14 +41,14 @@ AppAsset::register($this);
                     ['label' => 'About', 'url' => ['/site/about']],
                     ['label' => 'Contact', 'url' => ['/site/contact']],
             ];
-            
+
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => $menuItems,
             ]);
             NavBar::end();
             ?>
-
+      
             <header class="main-header">
                 <div class="container">
                     <h1 class="page-title"><?= Html::encode($this->title) ?></h1>
@@ -67,7 +68,7 @@ AppAsset::register($this);
                                 <ul id="coll-css" class="menu-submenu list-unstyled collapse">
                                     <?php if (Yii::$app->user->isGuest) { ?>
                                         <li><a href="<?= Url::to(['site/login']) ?>"><i class="fa fa-arrow-circle-right"></i> Login</a></li>
-                                        <?php } else { ?>
+                                    <?php } else { ?>
                                         <li><a href="<?= Url::to(['site/logout']) ?>"><i class="fa fa-arrow-circle-right"></i> Logout</a></li>
                                     <?php }
                                     ?>
@@ -78,7 +79,7 @@ AppAsset::register($this);
 
 
                             <li>
-                                <a href="<?=Url::to(['/admin/periode'])?>" class="collapsed"><i class="fa fa-hand-o-up"></i> Periode</a>
+                                <a href="<?= Url::to(['/admin/periode']) ?>" class="collapsed"><i class="fa fa-hand-o-up"></i> Periode</a>
                             </li>
                             <li>
                                 <a data-toggle="collapse" href="#coll-icons" class="collapsed"><i class="fa fa-briefcase"></i> Icons</a>

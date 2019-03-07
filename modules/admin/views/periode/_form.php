@@ -18,12 +18,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'tahun')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'tgl_periode')->textInput() ?>
-
-    <?= $form->field($model, 'status_vakasi')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'tgl_pencairan')->textInput() ?>
-
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

@@ -20,6 +20,15 @@ $(function () {
    
 });
 
+$(function () {
+    $('#modalButtonPeriode').click(function () {
+        $('#modalPeriode').modal('show')
+                .find('#modalContentPeriode')
+                .load($(this).attr('value'));
+				 return false;   
+    });
+});
+
 
 function openNav() {
 

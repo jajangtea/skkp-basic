@@ -51,29 +51,29 @@ class Periode extends \yii\db\ActiveRecord {
     }
 
     public static function getNamaBulan($model) {
-        if ($model == 1) {
+        if ($model == "01") {
             return "Januari";
-        } elseif ($model == 2) {
+        } elseif ($model == "02") {
             return "Februari";
-        } elseif ($model == 3) {
+        } elseif ($model == "03") {
             return "Maret";
-        } elseif ($model == 4) {
+        } elseif ($model == "04") {
             return "April";
-        } elseif ($model == 5) {
+        } elseif ($model == "05") {
             return "Mei";
-        } elseif ($model == 6) {
+        } elseif ($model == "06") {
             return "Juni";
-        } elseif ($model == 7) {
+        } elseif ($model == "07") {
             return "Juli";
-        } elseif ($model == 8) {
+        } elseif ($model == "08") {
             return "Agustus";
-        } elseif ($model == 9) {
+        } elseif ($model == "09") {
             return "September";
-        } elseif ($model == 10) {
+        } elseif ($model == "10") {
             return "Oktober";
-        } elseif ($model == 11) {
+        } elseif ($model == "11") {
             return "November";
-        } elseif ($model == 12) {
+        } elseif ($model == "12") {
             return "Desember";
         }
     }
@@ -82,10 +82,10 @@ class Periode extends \yii\db\ActiveRecord {
         $todayMonth = date("m");
         $todayYear = date("y");
         $number = cal_days_in_month(CAL_GREGORIAN, $todayMonth, $todayYear); // 31
-        for ($i = 1; $i < $number; $i++) {
-            $no = array_map('intval', str_split($i));
-            return $no;
+        for ($i = 1; $i< $number; $i++) {
+           return $i;
         }
+        
     }
 
 }

@@ -67,7 +67,7 @@ class PeriodeController extends Controller {
             return $this->redirect(['view', 'id' => $model->id_periode]);
         }
 
-        return $this->render('create', [
+        return $this->renderAjax('create', [
                     'model' => $model,
         ]);
     }
