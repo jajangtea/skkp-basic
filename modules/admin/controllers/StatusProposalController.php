@@ -3,16 +3,16 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\Uploadproposal;
-use app\models\UploadproposalSearch;
+use app\models\Statusproposal;
+use app\models\StatusproposalSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * UploadproposalController implements the CRUD actions for Uploadproposal model.
+ * StatusproposalController implements the CRUD actions for Statusproposal model.
  */
-class UploadproposalController extends Controller
+class StatusProposalController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class UploadproposalController extends Controller
     }
 
     /**
-     * Lists all Uploadproposal models.
+     * Lists all Statusproposal models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new UploadproposalSearch();
+        $searchModel = new StatusproposalSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class UploadproposalController extends Controller
     }
 
     /**
-     * Displays a single Uploadproposal model.
+     * Displays a single Statusproposal model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,16 +58,16 @@ class UploadproposalController extends Controller
     }
 
     /**
-     * Creates a new Uploadproposal model.
+     * Creates a new Statusproposal model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Uploadproposal();
+        $model = new Statusproposal();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_upload]);
+            return $this->redirect(['view', 'id' => $model->id_status_proposal]);
         }
 
         return $this->render('create', [
@@ -76,7 +76,7 @@ class UploadproposalController extends Controller
     }
 
     /**
-     * Updates an existing Uploadproposal model.
+     * Updates an existing Statusproposal model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -87,7 +87,7 @@ class UploadproposalController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_upload]);
+            return $this->redirect(['view', 'id' => $model->id_status_proposal]);
         }
 
         return $this->render('update', [
@@ -96,7 +96,7 @@ class UploadproposalController extends Controller
     }
 
     /**
-     * Deletes an existing Uploadproposal model.
+     * Deletes an existing Statusproposal model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class UploadproposalController extends Controller
     }
 
     /**
-     * Finds the Uploadproposal model based on its primary key value.
+     * Finds the Statusproposal model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Uploadproposal the loaded model
+     * @return Statusproposal the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Uploadproposal::findOne($id)) !== null) {
+        if (($model = Statusproposal::findOne($id)) !== null) {
             return $model;
         }
 
