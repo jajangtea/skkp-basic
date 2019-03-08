@@ -18,21 +18,21 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'IDPengajuan') ?>
+    <?= $form->field($model, 'id_pengajuan') ?>
 
-    <?= $form->field($model, 'IDJenisSidang') ?>
+    <?= $form->field($model, 'id_jenis_proposal') ?>
 
-    <?= $form->field($model, 'NIM') ?>
+    <?= $form->field($model, 'nim') ?>
 
-    <?= $form->field($model, 'TanggalDaftar') ?>
+    <?= $form->field($model, 'tanggal_daftar') ?>
 
-    <?= $form->field($model, 'Judul') ?>
+    <?= $form->field($model, 'judul') ?>
 
     <?php // echo $form->field($model, 'keterangan') ?>
 
-    <?php // echo $form->field($model, 'IDstatusProposal') ?>
+    <?php // echo $form->field($model, 'id_status_proposal') ?>
 
-    <?php // echo $form->field($model, 'idPeriode') ?>
+    <?php // echo $form->field($model, 'id_periode') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

@@ -12,19 +12,19 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'IDJenisSidang')->textInput() ?>
+    <?= $form->field($model, 'id_jenis_proposal')->textInput() ?>
 
-    <?= $form->field($model, 'NIM')->textInput() ?>
+    <?= $form->field($model, 'nim')->textInput() ?>
 
-    <?= $form->field($model, 'TanggalDaftar')->textInput() ?>
+    <?= $form->field($model, 'tanggal_daftar')->textInput() ?>
 
-    <?= $form->field($model, 'Judul')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'judul')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'keterangan')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'IDstatusProposal')->textInput() ?>
+    <?= $form->field($model, 'id_status_proposal')->textInput() ?>
 
-    <?= $form->field($model, 'idPeriode')->textInput() ?>
+    <?= $form->field($model, 'id_periode')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
