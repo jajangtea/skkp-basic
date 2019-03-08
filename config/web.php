@@ -15,7 +15,7 @@ $config = [
             'gii/*',
             'debug/*',
             'mimin/*', // only in dev mode
-            'admin/*'
+           // 'admin/*'
         ],
     ],
     'modules' => [

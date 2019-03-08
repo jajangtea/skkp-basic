@@ -14,7 +14,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel PeriodeSearch */
 /* @var $dataProvider ActiveDataProvider */
 
-$this->title = 'Periodes';
+$this->title = 'Periode';
 $this->params['breadcrumbs'][] = $this->title;
 
 
@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             Modal::begin([
                 'header' => '<h4 class="modal-title" id="myModalLabel">Tambah Periode</h4>',
                 'id' => 'modalPeriode',
-                'size' => 'modal-md',
+                'size' => 'modal-sm',
             ]);
             ?>
             <div id='modalContentPeriode'></div>
@@ -48,41 +48,64 @@ $this->params['breadcrumbs'][] = $this->title;
             ?>
             <?= Html::button('Tambah Periode', ['value' => Url::to(['create']), 'class' => 'button button-glow button-rounded button-caution pull-right', 'id' => 'modalButtonPeriode']); ?>
             <br/>
-            <?php Pjax::begin(); ?>
+            <?php Pjax::begin(['id' => 'periodeGrid']); ?>
             <?=
             GridView::widget([
                 'dataProvider' => $dataProvider,
-                'filterModel' => $searchModel,
+                // 'filterModel' => $searchModel,
                 'columns' => [
-                        [
+                    [
                         'class' => 'yii\grid\SerialColumn',
-                        'headerOptions' => ['width' => '30px', 'text-align' => 'center'],
+                        'headerOptions' => ['width' => '5%', 'text-align' => 'center'],
                         'contentOptions' => ['style' => 'text-align:center'],
                     ],
-                        [
+                    [
                         'attribute' => 'tgl',
-                        'headerOptions' => ['width' => '10px', 'text-align' => 'center'],
+                        'headerOptions' => ['width' => '10%', 'text-align' => 'center'],
                         'contentOptions' => ['style' => 'text-align:center'],
                     // 'filter' => Html::dropDownList($searchModel->tgl, 'tgl', array_combine(range(1, $number), range(1, $number))),
                     ],
-                        [
+                    [
                         'attribute' => 'bulan',
                         'value' => function($model) {
                             return Periode::getNamaBulan($model->bulan);
                         },
-                        'headerOptions' => ['width' => '70%', 'text-align' => 'center']
+                        'headerOptions' => ['width' => '50%', 'text-align' => 'center']
                     ],
-                        [
+                    [
                         'attribute' => 'tahun',
-                        'headerOptions' => ['width' => '30px', 'text-align' => 'center'],
+                        'headerOptions' => ['width' => '10%', 'text-align' => 'center'],
                         'contentOptions' => ['style' => 'text-align:center'],
                     ],
                     //'status_vakasi',
                     //'tgl_pencairan',
                     [
                         'class' => 'yii\grid\ActionColumn',
-                        'headerOptions' => ['width' => '100px', 'text-align' => 'center'],
+                        'headerOptions' => ['width' => '30%', 'text-align' => 'center'],
                         'contentOptions' => ['style' => 'text-align:center'],
+                        'buttons' => [
+                            'view' => function ($url, $model) {
+                                $icon = '<span class="icon-ar icon-ar-inverse icon-ar-info icon-ar-square icon-ar-sm"><i class="fa fa-globe"></i></span>';
+                                return Html::a($icon, $url, [
+                                            'data-toggle' => "modal",
+                                            'data-target' => "#categoryModal",
+                                ]);
+                            },
+                            'update' => function ($url, $model) {
+                                $icon = '<span class="icon-ar icon-ar-inverse icon-ar-success icon-ar-square icon-ar-sm"><i class="fa fa-pencil"></i></span>';
+                                return Html::a($icon, $url, [
+                                            'data-toggle' => "modal",
+                                            'data-target' => "#categoryModal",
+                                ]);
+                            },
+                            'delete' => function ($url, $model) {
+                                $icon = '<span class="icon-ar icon-ar-inverse icon-ar-danger icon-ar-square icon-ar-sm"><i class="fa fa-trash"></i></span>';
+                                return Html::a($icon, $url, [
+                                            'data-toggle' => "modal",
+                                            'data-target' => "#categoryModal",
+                                ]);
+                            },
+                        ],
                     ],
                 ],
             ]);

@@ -50,6 +50,7 @@ class PeriodeController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id) {
+        $this->layout = 'mainAdmin';
         return $this->render('view', [
                     'model' => $this->findModel($id),
         ]);
@@ -63,13 +64,17 @@ class PeriodeController extends Controller {
     public function actionCreate() {
         $model = new Periode();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_periode]);
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                echo json_encode(['status' => 'Success', 'message' => 'Cadastro realizado']);
+            } else {
+                echo json_encode(['status' => 'Error', 'message' => 'Falha no cadastro']);
+            }
+        } else {
+            return $this->renderAjax('create', [
+                        'model' => $model,
+            ]);
         }
-
-        return $this->renderAjax('create', [
-                    'model' => $model,
-        ]);
     }
 
     /**

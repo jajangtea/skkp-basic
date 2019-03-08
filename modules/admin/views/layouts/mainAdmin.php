@@ -69,7 +69,7 @@ AppAsset::register($this);
                                     <?php if (Yii::$app->user->isGuest) { ?>
                                         <li><a href="<?= Url::to(['site/login']) ?>"><i class="fa fa-arrow-circle-right"></i> Login</a></li>
                                     <?php } else { ?>
-                                        <li><a href="<?= Url::to(['site/logout']) ?>"><i class="fa fa-arrow-circle-right"></i> Logout</a></li>
+                                        <li><a href="<?= Url::to(['site/logout']) ?>"><i class="fa fa-arrow-circle-right"></i> Logout <?='('. Yii::$app->user->identity->username . ')'?></a></li>
                                     <?php }
                                     ?>
                                     <li><a href="<?= Url::to(['/site/signup']) ?>"><i class="fa fa-arrow-circle-right"></i> Register</a></li>
