@@ -2,7 +2,7 @@
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="http://skkp.sttindonesia.ac.id/themes/cube/img/stti.png" height="100px">
     </a>
-    <h1 align="center">SKKP [STT Indonesia Tanjungpinang](http://sttindonesia.ac.id/)</h1>
+    <h1 align="center">SKKP [STT Indonesia Tanjungpinang](http://www.sttindonesia.ac.id/)</h1>
     <br>
 </p>
 
