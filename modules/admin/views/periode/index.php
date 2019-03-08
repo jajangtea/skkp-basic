@@ -59,12 +59,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         'headerOptions' => ['width' => '5%', 'text-align' => 'center'],
                         'contentOptions' => ['style' => 'text-align:center'],
                     ],
-                    [
-                        'attribute' => 'tgl',
-                        'headerOptions' => ['width' => '10%', 'text-align' => 'center'],
-                        'contentOptions' => ['style' => 'text-align:center'],
-                    // 'filter' => Html::dropDownList($searchModel->tgl, 'tgl', array_combine(range(1, $number), range(1, $number))),
-                    ],
+//                    [
+//                        'attribute' => 'tgl',
+//                        'headerOptions' => ['width' => '10%', 'text-align' => 'center'],
+//                        'contentOptions' => ['style' => 'text-align:center'],
+//                    // 'filter' => Html::dropDownList($searchModel->tgl, 'tgl', array_combine(range(1, $number), range(1, $number))),
+//                    ],
                     [
                         'attribute' => 'bulan',
                         'value' => function($model) {

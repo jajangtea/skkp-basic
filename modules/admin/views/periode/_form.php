@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
     $todayYears = date("Y");
     $number = cal_days_in_month(CAL_GREGORIAN, $todayMonth, $todayYear); // 31
     ?>
-    <?= $form->field($model, 'tgl')->dropDownList(array_combine(range(1, $number), range(1, $number)), ['prompt' => 'Pilih Tanggal']) ?>
+   
 
     <?= $form->field($model, 'bulan')->dropDownList(array_combine(range(1, 12), range(1, 12)), ['prompt' => 'Pilih Bulan']) ?>
 
