@@ -32,7 +32,8 @@ use yii\helpers\Url;
                 echo Html::button('Login', ['value' => Url::to(['site/login']), 'class' => 'modalB', 'id' => 'modalButton']);
                 echo Html::button('Register', ['value' => Url::to(['site/signup']), 'class' => 'modalB', 'id' => 'modalButtonRegister']);
             } else {
-                echo Html::a('Logout', Url::to(['site/logout']),['data-method'=>'POST']);
+                echo Html::a('Logout ('. Yii::$app->user->identity->username .')', Url::to(['site/logout']),['data-method'=>'POST']);
+                
             }
             ?>
         </li>
