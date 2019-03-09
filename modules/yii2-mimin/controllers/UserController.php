@@ -43,7 +43,7 @@ class UserController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        $this->layout = '@app/views/layouts/mainAdmin';
+       $this->layout = '@app/modules/admin/views/layouts/mainAdmin';
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -59,7 +59,7 @@ class UserController extends Controller {
      * @return mixed
      */
     public function actionView($id) {
-        $this->layout = '@app/views/layouts/mainAdmin';
+      $this->layout = '@app/modules/admin/views/layouts/mainAdmin';
         $model = $this->findModel($id);
         $authAssignments = AuthAssignment::find()->where([
                     'user_id' => $model->id,
@@ -110,7 +110,7 @@ class UserController extends Controller {
      * @return mixed
      */
     public function actionCreate() {
-        $this->layout = '@app/views/layouts/mainAdmin';
+        $this->layout = '@app/modules/admin/views/layouts/mainAdmin';
         $model = new User();
 
         if ($model->load(Yii::$app->request->post())) {
@@ -137,7 +137,7 @@ class UserController extends Controller {
      * @return mixed
      */
     public function actionUpdate($id) {
-        $this->layout = '@app/views/layouts/mainAdmin';
+         $this->layout = '@app/modules/admin/views/layouts/mainAdmin';
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

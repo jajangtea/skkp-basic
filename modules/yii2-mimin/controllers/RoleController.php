@@ -40,7 +40,7 @@ class RoleController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        $this->layout = '@app/views/layouts/mainAdmin';
+        $this->layout = '@app/modules/admin/views/layouts/mainAdmin';
         $searchModel = new AuthItemSearch([
             'type' => 1
         ]);
@@ -58,7 +58,7 @@ class RoleController extends Controller {
      * @return mixed
      */
     public function actionView($id) {
-        $this->layout = '@app/views/layouts/mainAdmin';
+        $this->layout = '@app/modules/admin/views/layouts/mainAdmin';
         $model = $this->findModel($id);
 
         return $this->render('view', [
@@ -72,7 +72,7 @@ class RoleController extends Controller {
      * @return mixed
      */
     public function actionCreate() {
-        $this->layout = '@app/views/layouts/mainAdmin';
+        $this->layout = '@app/modules/admin/views/layouts/mainAdmin';
         $model = new AuthItem();
 
         if ($model->load(Yii::$app->request->post())) {
@@ -95,7 +95,7 @@ class RoleController extends Controller {
      * @return mixed
      */
     public function actionUpdate($id) {
-        $this->layout = '@app/views/layouts/mainAdmin';
+        $this->layout = '@app/modules/admin/views/layouts/mainAdmin';
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {

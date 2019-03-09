@@ -47,7 +47,7 @@ class RouteController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        $this->layout = '@app/views/layouts/mainAdmin';
+        $this->layout = '@app/modules/admin/views/layouts/mainAdmin';
         $searchModel = new RouteSearch([
             'status' => 1,
         ]);
@@ -67,7 +67,7 @@ class RouteController extends Controller {
      * @return mixed
      */
     public function actionView($id) {
-        $this->layout = '@app/views/layouts/mainAdmin';
+        $this->layout = '@app/modules/admin/views/layouts/mainAdmin';
         return $this->render('view', [
                     'model' => $this->findModel($id),
         ]);
@@ -79,7 +79,7 @@ class RouteController extends Controller {
      * @return mixed
      */
     public function actionCreate() {
-        $this->layout = '@app/views/layouts/mainAdmin';
+        $this->layout = '@app/modules/admin/views/layouts/mainAdmin';
         $model = new Route();
 
         if ($model->load(Yii::$app->request->post())) {
@@ -99,7 +99,7 @@ class RouteController extends Controller {
      * @return mixed
      */
     public function actionUpdate($id) {
-        $this->layout = '@app/views/layouts/mainAdmin';
+        $this->layout = '@app/modules/admin/views/layouts/mainAdmin';
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -130,7 +130,7 @@ class RouteController extends Controller {
      * @return mixed
      */
     public function actionGenerate() {
-        $this->layout = '@app/views/layouts/mainAdmin';
+        $this->layout = '@app/modules/admin/views/layouts/mainAdmin';
         $routes = $this->searchRoute('all');
         foreach ($routes as $route => $status) {
             if (!Route::findOne($route)) {
